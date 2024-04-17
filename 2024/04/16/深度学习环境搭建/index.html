@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/davidblue.jpg">
+  <link rel="icon" href="/img/davidblue.jpg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -24,7 +24,7 @@
 <meta property="og:description" content="显卡驱动安装 1.查看自己机器显卡型号 1lspci | grep -i nvidia 注明：方框中[GeForce GTX 2080 Ti]就是型号 2.到NVIDIA官网选择型号下载 NVIDIA官网： Official Drivers | NVIDIA 选择product series、product、OS。 得到.run执行文件 3. 删除可能存在的NVIDIA驱动 1sudo apt-g">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-04-16T07:11:01.000Z">
-<meta property="article:modified_time" content="2024-04-16T07:18:11.655Z">
+<meta property="article:modified_time" content="2024-04-17T03:42:16.491Z">
 <meta property="article:author" content="EricWang">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -290,7 +290,7 @@
             
               <div class="markdown-body">
                 
-                <h1>显卡驱动安装</h1>
+                <h2 id="显卡驱动安装">显卡驱动安装</h2>
 <h3 id="1-查看自己机器显卡型号">1.查看自己机器显卡型号</h3>
 <figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs 1c">lspci <span class="hljs-string">| grep -i nvidia</span><br></code></pre></td></tr></table></figure>
 <p>注明：方框中[GeForce GTX 2080 Ti]就是型号</p>
@@ -329,7 +329,7 @@
 <h3 id="7-验证安装">7. 验证安装</h3>
 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">nvidia-smi</span><br></code></pre></td></tr></table></figure>
 <p>可以看到显卡相关的信息</p>
-<h1>CUDA安装</h1>
+<h2 id="CUDA安装">CUDA安装</h2>
 <h3 id="1-官网下载cuda">1. 官网下载cuda</h3>
 <p><a target="_blank" rel="noopener" href="https://developer.nvidia.com/cuda-downloads">CUDA Toolkit 12.3 Update 2 Downloads | NVIDIA Developer</a></p>
 <p>ubuntu版本选择</p>
@@ -361,7 +361,7 @@
 <h3 id="4-验证安装">4. 验证安装</h3>
 <p>执行</p>
 <figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">nvcc <span class="hljs-comment">--version</span><br></code></pre></td></tr></table></figure>
-<h1>Cudnn安装</h1>
+<h2 id="Cudnn安装">Cudnn安装</h2>
 <h3 id="1-下载">1. 下载</h3>
 <p><a target="_blank" rel="noopener" href="https://developer.nvidia.com/cudnn">https://developer.nvidia.com/cudnn</a></p>
 <p>选择cuDNN Library for Linux (x86)下载，得到.tgz.xz压缩文件</p>
@@ -377,7 +377,7 @@
 <p>使用dkms重新安装</p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-comment"># 有些机器需要安装dkms，如果已安装则忽略</span><br><span class="hljs-attribute">sudo</span> apt-get install dkms<br> <br><span class="hljs-comment"># 使用dkms重新编译</span><br><span class="hljs-comment"># 注意 -v 后面的版本号，就是第一步中 nvidia- 后面的内容，如果上面输出是 nvidia-510.47 ，那就得 -v 510.47</span><br><span class="hljs-attribute">sudo</span> dkms install -m nvidia -v srv-<span class="hljs-number">510</span>.<span class="hljs-number">47</span>.<span class="hljs-number">03</span><br></code></pre></td></tr></table></figure>
 <p>重启电脑再执行nvidia-smi就恢复正常</p>
-<h1>Anaconda安装</h1>
+<h2 id="Anaconda安装">Anaconda安装</h2>
 <h3 id="1-选择anaconda版本">1.选择anaconda版本</h3>
 <p>由于目前（2024年1月）使用的ns-3版本使用的python版本为3.8.10，最新的anaconda为3.11不兼容会出问题，所以从历史版本中选择python版本低的，历史版本链接为</p>
 <p><a target="_blank" rel="noopener" href="https://docs.anaconda.com/free/anaconda/release-notes/#release-notes">Anaconda release notes — Anaconda documentation</a></p>
@@ -423,7 +423,7 @@
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs lua">conda <span class="hljs-built_in">remove</span> -n wym <span class="hljs-comment">--all</span><br></code></pre></td></tr></table></figure>
 <p>显示conda中库列表</p>
 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">conda list</span><br></code></pre></td></tr></table></figure>
-<h1>Pytorch安装</h1>
+<h2 id="Pytorch安装">Pytorch安装</h2>
 <h3 id="1-了解对应的pytorch版本">1.了解对应的pytorch版本</h3>
 <p>由于ns-3使用的环境python版本是3.8，并且cuda的版本是12.3，所以选择2.0.0版本，历史版本在以下链接</p>
 <p><a target="_blank" rel="noopener" href="https://pytorch.org/get-started/previous-versions/">https://pytorch.org/get-started/previous-versions/</a></p>
@@ -438,7 +438,7 @@
 <p>检验能否运行cuda</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">torch<span class="hljs-selector-class">.cuda</span><span class="hljs-selector-class">.is_available</span>()<br></code></pre></td></tr></table></figure>
 <p>最后显示True表示成功。</p>
-<h1>添加新的系统用户</h1>
+<h2 id="添加新的系统用户">添加新的系统用户</h2>
 <p>在设置中用户</p>
 <h3 id="1-解锁用户">1.解锁用户</h3>
 <p>输入root密码</p>
@@ -457,7 +457,7 @@
 <h3 id="8-此时会自动激活base环境，如果没有激活，关闭终端打开新的终端，输入">8.此时会自动激活base环境，如果没有激活，关闭终端打开新的终端，输入</h3>
 <figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs applescript">conda <span class="hljs-built_in">activate</span><br></code></pre></td></tr></table></figure>
 <p><strong>其他方式同上</strong></p>
-<h1>测试是否完全成功</h1>
+<h2 id="测试是否完全成功">测试是否完全成功</h2>
 <p>使用ndnSIMALL29测试</p>
 <p>安装前需要保证在当前硬盘环境能够成功跑通才能进行后续的安装</p>
 <p>1.在base环境测试能否跑通</p>
@@ -467,7 +467,7 @@
 <figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli"><span class="hljs-string">./waf</span> configure <span class="hljs-params">--enable-examples</span> <span class="hljs-params">--enable-nlsr</span><br></code></pre></td></tr></table></figure>
 <figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs brainfuck"><span class="hljs-string">.</span><span class="hljs-comment">/waf</span> <span class="hljs-literal">--</span><span class="hljs-comment">run=&quot;nlsr</span><span class="hljs-literal">-</span><span class="hljs-comment">dqn</span> <span class="hljs-literal">--</span><span class="hljs-comment">withGym</span> <span class="hljs-literal">--</span><span class="hljs-comment">linkType=&#x27;AdHocWifi&#x27;</span> <span class="hljs-literal">--</span><span class="hljs-comment">simulationSpan=10&quot;</span><br></code></pre></td></tr></table></figure>
 <p>–vis目前还不能使用，但是介于我们使用ssh连接至服务器，–vis可视化界面也不需要。</p>
-<h1>参考教程</h1>
+<h2 id="参考教程">参考教程</h2>
 <p>cuda部分</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/JineD/article/details/131201121">Ubuntu安装英伟达显卡驱动、Cuda和Cudnn_install nvidia accelerated graphics driver for lin-CSDN博客</a></p>
 <p>anaconda部分</p>
