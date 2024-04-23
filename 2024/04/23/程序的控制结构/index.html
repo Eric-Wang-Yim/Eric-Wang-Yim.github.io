@@ -1,0 +1,1030 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/davidblue.jpg">
+  <link rel="icon" href="/img/davidblue.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="EricWang">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="程序的控制结构 –if语句 2051：偶数 【题目描述】 读入一个正整数a，如果a为偶数输出yes。 【输入】 一个正整数a。 【输出】 偶数输出yes，否则什么也不输出。 【输入样例】 112 【输出样例】 1yes 123456789#include&lt;iostream&gt;using namespace std;int main()&#123;	int a;	cin&gt;&gt;a;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="程序的控制结构">
+<meta property="og:url" content="http://example.com/2024/04/23/%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="程序的控制结构 –if语句 2051：偶数 【题目描述】 读入一个正整数a，如果a为偶数输出yes。 【输入】 一个正整数a。 【输出】 偶数输出yes，否则什么也不输出。 【输入样例】 112 【输出样例】 1yes 123456789#include&lt;iostream&gt;using namespace std;int main()&#123;	int a;	cin&gt;&gt;a;">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-04-23T07:48:17.000Z">
+<meta property="article:modified_time" content="2024-04-23T01:45:19.222Z">
+<meta property="article:author" content="EricWang">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>程序的控制结构 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>EricWang</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/gulingjie.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="程序的控制结构"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        EricWang
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-04-23 15:48" pubdate>
+          April 23, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.9k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          41 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">程序的控制结构</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1>程序的控制结构</h1>
+<h2 id="–if语句">–if语句</h2>
+<h2 id="2051：偶数">2051：偶数</h2>
+<h3 id="【题目描述】">【题目描述】</h3>
+<p>读入一个正整数a，如果a为偶数输出<code>yes</code>。</p>
+<h3 id="【输入】">【输入】</h3>
+<p>一个正整数a。</p>
+<h3 id="【输出】">【输出】</h3>
+<p>偶数输出<code>yes</code>，否则什么也不输出。</p>
+<h3 id="【输入样例】">【输入样例】</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">12<br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】">【输出样例】</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">yes</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-type">int</span> a;<br>	cin&gt;&gt;a;<br>	<span class="hljs-keyword">if</span>(a%<span class="hljs-number">2</span>==<span class="hljs-number">0</span>)<br>		cout&lt;&lt;<span class="hljs-string">&quot;yes&quot;</span>;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="2052：范围判断">2052：范围判断</h2>
+<h3 id="【题目描述】-2">【题目描述】</h3>
+<p>读入一个整数，若这个数大于1并且小于100，则输出<code>yes</code>。</p>
+<h3 id="【输入】-2">【输入】</h3>
+<p>一个整数</p>
+<h3 id="【输出】-2">【输出】</h3>
+<p>满足条件输出<code>yes</code>，否则不输出。</p>
+<h3 id="【输入样例】-2">【输入样例】</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">76<br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-2">【输出样例】</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">yes</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-type">int</span> a;<br>	cin&gt;&gt;a;<br>	<span class="hljs-keyword">if</span>(a&gt;<span class="hljs-number">1</span> &amp;&amp; a&lt;<span class="hljs-number">100</span>)<br>		cout&lt;&lt;<span class="hljs-string">&quot;yes&quot;</span>;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="2053：三个数">2053：三个数</h2>
+<h3 id="【题目描述】-3">【题目描述】</h3>
+<p>输入三个整数，按从大到小的顺序输出。</p>
+<h3 id="【输入】-3">【输入】</h3>
+<p>输入三个整数</p>
+<h3 id="【输出】-3">【输出】</h3>
+<p>按从大到小的顺序输出。</p>
+<h3 id="【输入样例】-3">【输入样例】</h3>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">3 </span><span class="hljs-number">2</span> <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-3">【输出样例】</h3>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">3 </span><span class="hljs-number">2</span> <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-type">int</span> max,mid,min,tmp;<br>	cin&gt;&gt;max&gt;&gt;mid&gt;&gt;min;<br>	<span class="hljs-keyword">if</span>(min&gt;mid)&#123;<br>		tmp = min;<br>		min = mid;<br>		mid = tmp;<br>	&#125;<br>	<span class="hljs-keyword">if</span>(mid&gt;max)&#123;<br>		tmp = mid;<br>		mid = max;<br>		max = tmp;<br>	&#125;<br>	<span class="hljs-keyword">if</span>(min&gt;mid)&#123;<br>		tmp = min;<br>		min = mid;<br>		mid = tmp;<br>	&#125;<br>	cout&lt;&lt;max&lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;mid&lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;min;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="2054：适合晨练">2054：适合晨练</h2>
+<h3 id="【题目描述】-4">【题目描述】</h3>
+<p>输入温度t的值，判断是否适合晨练。(25≤t≤30，则适合晨练<code>ok!</code>，否则不适合<code>no!</code>)</p>
+<h3 id="【输入】-4">【输入】</h3>
+<p>输入温度t的值。</p>
+<h3 id="【输出】-4">【输出】</h3>
+<p>输出判断结果</p>
+<h3 id="【输入样例】-4">【输入样例】</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">26<br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-4">【输出样例】</h3>
+<figure class="highlight erlang-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs erlang-repl">ok!<br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-type">int</span> t;<br>	cin&gt;&gt;t;<br>	<span class="hljs-keyword">if</span>(t&gt;=<span class="hljs-number">25</span> &amp;&amp; t&lt;=<span class="hljs-number">30</span>)&#123;<br>		cout&lt;&lt;<span class="hljs-string">&quot;ok!&quot;</span>;<br>	&#125;<span class="hljs-keyword">else</span><br>		cout&lt;&lt;<span class="hljs-string">&quot;no!&quot;</span>;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="2055：收费">2055：收费</h2>
+<h3 id="【题目描述】-5">【题目描述】</h3>
+<p>乘坐飞机时，当乘客行李小于等于20公斤时，按每公斤1.68元收费，大于20公斤时，按每公斤1.98元收费，编程计算收费(保留2位小数)。</p>
+<h3 id="【输入】-5">【输入】</h3>
+<p>行李重量。</p>
+<h3 id="【输出】-5">【输出】</h3>
+<p>费用（保留2位小数）。</p>
+<h3 id="【输入样例】-5">【输入样例】</h3>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">20</span>.<span class="hljs-number">00</span><br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-5">【输出样例】</h3>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">33</span>.<span class="hljs-number">60</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-type">double</span> weight;<br>	cin&gt;&gt;weight;<br>	<span class="hljs-keyword">if</span>(weight&lt;=<span class="hljs-number">20</span>)&#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%.2f&quot;</span>,weight*<span class="hljs-number">1.68</span>);<br>	&#125;<span class="hljs-keyword">else</span><br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%.2f&quot;</span>,weight*<span class="hljs-number">1.98</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="2056：最大的数">2056：最大的数</h2>
+<h3 id="【题目描述】-6">【题目描述】</h3>
+<p>输入三个数，输出其中最大的数。</p>
+<h3 id="【输入】-6">【输入】</h3>
+<p>输入三个数。</p>
+<h3 id="【输出】-6">【输出】</h3>
+<p>其中最大的数。</p>
+<h3 id="【输入样例】-6">【输入样例】</h3>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">1</span>.<span class="hljs-number">01</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span>.<span class="hljs-number">22</span><br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-6">【输出样例】</h3>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">3</span>.<span class="hljs-number">22</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-type">double</span> max,mid,min,tmp;<br>	cin&gt;&gt;max&gt;&gt;mid&gt;&gt;min;<br>	<span class="hljs-keyword">if</span>(min&gt;mid)&#123;<br>		tmp = min;<br>		min = mid;<br>		mid = tmp;<br>	&#125;<br>	<span class="hljs-keyword">if</span>(mid&gt;max)&#123;<br>		tmp = mid;<br>		mid = max;<br>		max = tmp;<br>	&#125;<br>	cout&lt;&lt;max;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="1039：判断数正负">1039：判断数正负</h2>
+<h3 id="【题目描述】-7">【题目描述】</h3>
+<p>给定一个整数N，判断其正负。如果N&gt;0，输出<code>positive</code>；如果N=0，输出<code>zero</code>；如果N&lt;0，输出<code>negative</code>。</p>
+<h3 id="【输入】-7">【输入】</h3>
+<p>一个整数N(−109≤N≤109)。</p>
+<h3 id="【输出】-7">【输出】</h3>
+<p>如果N&gt;0, 输出<code>positive</code>;</p>
+<p>如果N=0, 输出<code>zero</code>;</p>
+<p>如果N&lt;0, 输出<code>negative</code>。</p>
+<h3 id="【输入样例】-7">【输入样例】</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">1<br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-7">【输出样例】</h3>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">positive</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-type">int</span> n;<br>	cin&gt;&gt;n;<br>	<span class="hljs-keyword">if</span>(n&gt;<span class="hljs-number">0</span>)&#123;<br>		cout&lt;&lt;<span class="hljs-string">&quot;positive&quot;</span>;<br>	&#125;<br>	<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(n==<span class="hljs-number">0</span>)&#123;<br>		cout&lt;&lt;<span class="hljs-string">&quot;zero&quot;</span>;<br>	&#125;<br>	<span class="hljs-keyword">else</span><br>		cout&lt;&lt;<span class="hljs-string">&quot;negative&quot;</span>;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="1040：输出绝对值">1040：输出绝对值</h2>
+<h3 id="【题目描述】-8">【题目描述】</h3>
+<p>输入一个浮点数，输出这个浮点数的绝对值，保留到小数点后两位。</p>
+<h3 id="【输入】-8">【输入】</h3>
+<p>输入一个浮点数，其绝对值不超过10000。</p>
+<h3 id="【输出】-8">【输出】</h3>
+<p>输出这个浮点数的绝对值，保留到小数点后两位。</p>
+<h3 id="【输入样例】-8">【输入样例】</h3>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs diff"><span class="hljs-deletion">-3.14</span><br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-8">【输出样例】</h3>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">3</span>.<span class="hljs-number">14</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;cmath&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-type">double</span> n;<br>	cin&gt;&gt;n;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%.2f&quot;</span>,<span class="hljs-built_in">fabs</span>(n));<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="1041：奇偶数判断">1041：奇偶数判断</h2>
+<h3 id="【题目描述】-9">【题目描述】</h3>
+<p>给定一个整数，判断该数是奇数还是偶数。如果n是奇数，输出odd；如果n是偶数，输出even。</p>
+<h3 id="【输入】-9">【输入】</h3>
+<p>输入仅一行，一个大于零的正整数n。</p>
+<h3 id="【输出】-9">【输出】</h3>
+<p>输出仅一行，如果n是奇数，输出odd；如果n是偶数，输出even。</p>
+<h3 id="【输入样例】-9">【输入样例】</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">5<br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-9">【输出样例】</h3>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">odd</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-type">int</span> n;<br>	cin&gt;&gt;n;<br>	<span class="hljs-keyword">if</span>(n%<span class="hljs-number">2</span> == <span class="hljs-number">0</span>)<br>		cout&lt;&lt;<span class="hljs-string">&quot;even&quot;</span>;<br>	<span class="hljs-keyword">else</span><br>		cout&lt;&lt;<span class="hljs-string">&quot;odd&quot;</span>;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="1042：奇偶ASCII值判断">1042：奇偶ASCII值判断</h2>
+<h3 id="【题目描述】-10">【题目描述】</h3>
+<p>任意输入一个字符，判断其ASCII是否是奇数，若是，输出YES，否则，输出NO。例如，字符A的ASCII值是6565，则输出YES，若输入字符B(ASCII值是6666)，则输出N。</p>
+<h3 id="【输入】-10">【输入】</h3>
+<p>输入一个字符。</p>
+<h3 id="【输出】-10">【输出】</h3>
+<p>如果其ASCII值为奇数，则输出YES，否则，输出NO。</p>
+<h3 id="【输入样例】-10">【输入样例】</h3>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">A</span><br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-10">【输出样例】</h3>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">YES</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-type">char</span> n;<br>	cin&gt;&gt;n;<br>	<span class="hljs-keyword">if</span>(<span class="hljs-built_in">int</span>(n)%<span class="hljs-number">2</span> == <span class="hljs-number">0</span>)<br>		cout&lt;&lt;<span class="hljs-string">&quot;NO&quot;</span>;<br>	<span class="hljs-keyword">else</span><br>		cout&lt;&lt;<span class="hljs-string">&quot;YES&quot;</span>;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="1043：整数大小比较">1043：整数大小比较</h2>
+<h3 id="【题目描述】-11">【题目描述】</h3>
+<p>输入两个整数，比较它们的大小。若x&gt;y，输出&gt;；若x=y，输出=；若x&lt;y，输出&lt;。</p>
+<h3 id="【输入】-11">【输入】</h3>
+<p>一行，包含两个整数x和y，中间用单个空格隔开。0≤x&lt;2^32, −2^31≤y&lt;2^31。</p>
+<h3 id="【输出】-11">【输出】</h3>
+<p>一个字符。若x&gt;y，输出 &gt; ；若x=y，输出 ==；若x&lt;y，输出 &lt; ；</p>
+<h3 id="【输入样例】-11">【输入样例】</h3>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">1000 </span><span class="hljs-number">100</span><br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-11">【输出样例】</h3>
+<figure class="highlight node-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs node-repl"><span class="hljs-meta prompt_">&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-type">int</span> x,y;<br>	cin&gt;&gt;x&gt;&gt;y;<br>	<span class="hljs-keyword">if</span>(x&gt;y)<br>		cout&lt;&lt;<span class="hljs-string">&#x27;&gt;&#x27;</span>;<br>	<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(x==y)<br>		cout&lt;&lt;<span class="hljs-string">&#x27;=&#x27;</span>;<br>	<span class="hljs-keyword">else</span><br>		cout&lt;&lt;<span class="hljs-string">&#x27;&lt;&#x27;</span>;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="1044：判断是否为两位数">1044：判断是否为两位数</h2>
+<h3 id="【题目描述】-12">【题目描述】</h3>
+<p>判断一个正整数是否是两位数(即大于等于10且小于等于99)。若该正整数是两位数，输出1，否则输出0。</p>
+<h3 id="【输入】-12">【输入】</h3>
+<p>一个正整数，不超过1000。</p>
+<h3 id="【输出】-12">【输出】</h3>
+<p>一行。若该正整数是两位数，输出1，否则输出0。</p>
+<h3 id="【输入样例】-12">【输入样例】</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">54<br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-12">【输出样例】</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">1<br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-type">int</span> x;<br>	cin&gt;&gt;x;<br>	<span class="hljs-keyword">if</span>(x&gt;=<span class="hljs-number">10</span> &amp;&amp; x&lt;=<span class="hljs-number">99</span>)<br>		cout&lt;&lt;<span class="hljs-string">&#x27;1&#x27;</span>;<br>	<span class="hljs-keyword">else</span><br>		cout&lt;&lt;<span class="hljs-string">&#x27;0&#x27;</span>;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="1045：收集瓶盖赢大奖">1045：收集瓶盖赢大奖</h2>
+<h3 id="【题目描述】-13">【题目描述】</h3>
+<p>某饮料公司最近推出了一个“收集瓶盖赢大奖”的活动：如果你拥有10个印有“幸运”、或20个印有“鼓励”的瓶盖，就可以兑换一个神秘大奖。现分别给出你拥有的印有“幸运”和“鼓励”的瓶盖数，判断是否可以去兑换大奖。若可以兑换大奖，输出1，否则输出0。</p>
+<h3 id="【输入】-13">【输入】</h3>
+<p>一行，包含两个整数，分别是印有“幸运”和“鼓励”的瓶盖数，用一个空格隔开。</p>
+<h3 id="【输出】-13">【输出】</h3>
+<p>一行。若可以兑换大奖，输出1，否则输出0。</p>
+<h3 id="【输入样例】-13">【输入样例】</h3>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">11 </span><span class="hljs-number">19</span><br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-13">【输出样例】</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">1<br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-type">int</span> x,y;<br>	cin&gt;&gt;x&gt;&gt;y;<br>	<span class="hljs-keyword">if</span>(x&gt;=<span class="hljs-number">10</span> || y&gt;=<span class="hljs-number">20</span>)<br>		cout&lt;&lt;<span class="hljs-string">&#x27;1&#x27;</span>;<br>	<span class="hljs-keyword">else</span><br>		cout&lt;&lt;<span class="hljs-string">&#x27;0&#x27;</span>;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="1046：判断一个数能否同时被3和5整除">1046：判断一个数能否同时被3和5整除</h2>
+<h3 id="【题目描述】-14">【题目描述】</h3>
+<p>判断一个数n 能否同时被3和5整除，如果能同时被3和5整除输出YES，否则输出NO。</p>
+<h3 id="【输入】-14">【输入】</h3>
+<p>输入一行，包含一个整数n。（ -1,000,000 &lt; n &lt; 1,000,000）</p>
+<h3 id="【输出】-14">【输出】</h3>
+<p>输出一行，如果能同时被3和5整除输出YES，否则输出NO。</p>
+<h3 id="【输入样例】-14">【输入样例】</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">15<br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-14">【输出样例】</h3>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">YES</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-type">int</span> x;<br>	cin&gt;&gt;x;<br>	<span class="hljs-keyword">if</span>(x%<span class="hljs-number">3</span>==<span class="hljs-number">0</span> &amp;&amp; x%<span class="hljs-number">5</span>==<span class="hljs-number">0</span>)<br>		cout&lt;&lt;<span class="hljs-string">&quot;YES&quot;</span>;<br>	<span class="hljs-keyword">else</span><br>		cout&lt;&lt;<span class="hljs-string">&quot;NO&quot;</span>;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="1047：判断能否被3，5，7整除">1047：判断能否被3，5，7整除</h2>
+<h3 id="【题目描述】-15">【题目描述】</h3>
+<p>给定一个整数，判断它能否被3，5，7整除，并输出以下信息：</p>
+<p>1、能同时被3，5，7整除（直接输出<code>3 5 7</code>，每个数中间一个空格）；</p>
+<p>2、只能被其中两个数整除（输出两个数，小的在前，大的在后。例如：<code>3 5</code>或者<code>3 7</code>或者<code>5 7</code>，中间用空格分隔）；</p>
+<p>3、只能被其中一个数整除（输出这个除数）；</p>
+<p>4、不能被任何数整除，输出小写字符‘<code>n</code>’，不包括单引号。</p>
+<h3 id="【输入】-15">【输入】</h3>
+<p>输入一行，包括一个整数。</p>
+<h3 id="【输出】-15">【输出】</h3>
+<p>输出一行，按照描述要求给出整数被3，5，7整除的情况。</p>
+<h3 id="【输入样例】-15">【输入样例】</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">105<br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-15">【输出样例】</h3>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">3 </span><span class="hljs-number">5</span> <span class="hljs-number">7</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-comment">#include&lt;iostream&gt;</span><br>using namespace std;<br>int main()&#123;<br>	int x;<br>	cin&gt;&gt;x;<br>	<span class="hljs-keyword">if</span>(x%<span class="hljs-attribute">3</span>==0 &amp;&amp; x%<span class="hljs-attribute">5</span>==0 &amp;&amp; x%<span class="hljs-attribute">7</span>==0)<br>		cout&lt;&lt;<span class="hljs-string">&quot;3 5 7&quot;</span>;<br>	<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(x%<span class="hljs-attribute">3</span>==0 &amp;&amp; x%<span class="hljs-attribute">5</span>==0)<br>		cout&lt;&lt;<span class="hljs-string">&quot;3 5&quot;</span>;<br>	<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(x%<span class="hljs-attribute">3</span>==0 &amp;&amp; x%<span class="hljs-attribute">7</span>==0)<br>		cout&lt;&lt;<span class="hljs-string">&quot;3 7&quot;</span>;<br>	<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(x%<span class="hljs-attribute">5</span>==0 &amp;&amp; x%<span class="hljs-attribute">7</span>==0)<br>		cout&lt;&lt;<span class="hljs-string">&quot;5 7&quot;</span>;<br>	<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(x%<span class="hljs-attribute">3</span>==0)<br>		cout&lt;&lt;<span class="hljs-string">&quot;3&quot;</span>;<br>	<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(x%<span class="hljs-attribute">5</span>==0)<br>		cout&lt;&lt;<span class="hljs-string">&quot;5&quot;</span>;<br>	<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(x%<span class="hljs-attribute">7</span>==0)<br>		cout&lt;&lt;<span class="hljs-string">&quot;7&quot;</span>;<br>	<span class="hljs-keyword">else</span><br>		cout&lt;&lt;<span class="hljs-string">&#x27;n&#x27;</span>;<br>	return 0;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="1048：有一门课不及格的学生">1048：有一门课不及格的学生</h2>
+<h3 id="【题目描述】-16">【题目描述】</h3>
+<p>给出一名学生的语文和数学成绩，判断他是否恰好有一门课不及格(成绩小于60分)。若该生恰好有一门课不及格，输出1；否则输出0。</p>
+<h3 id="【输入】-16">【输入】</h3>
+<p>一行，包含两个在0到100之间的整数，分别是该生的语文成绩和数学成绩。</p>
+<h3 id="【输出】-16">【输出】</h3>
+<p>若该生恰好有一门课不及格，输出1；否则输出0。</p>
+<h3 id="【输入样例】-16">【输入样例】</h3>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">50 </span><span class="hljs-number">80</span><br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-16">【输出样例】</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">1<br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-type">int</span> x,y;<br>	cin&gt;&gt;x&gt;&gt;y;<br>	<span class="hljs-keyword">if</span>((x&lt;<span class="hljs-number">60</span> &amp;&amp; y&gt;=<span class="hljs-number">60</span>) || (x&gt;=<span class="hljs-number">60</span> &amp;&amp; y&lt;<span class="hljs-number">60</span>))<br>		cout&lt;&lt;<span class="hljs-string">&quot;1&quot;</span>;<br>	<span class="hljs-keyword">else</span><br>		cout&lt;&lt;<span class="hljs-string">&quot;0&quot;</span>;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<hr>
+<h2 id="–switch语句">–switch语句</h2>
+<h2 id="2057：星期几">2057：星期几</h2>
+<h3 id="【题目描述】-17">【题目描述】</h3>
+<p>根据输入的表示星期几的数字，对应输出它的英文名称。</p>
+<p>1、星期一：<code>Monday</code></p>
+<p>2、星期二：<code>Tuesday</code></p>
+<p>3、星期三：<code>Wednesday</code></p>
+<p>4、星期四：<code>Thursday</code></p>
+<p>5、星期五：<code>Friday</code></p>
+<p>6、星期六：<code>Saturday</code></p>
+<p>7、星期日：<code>Sunday</code></p>
+<p>错误输入请输出：<code>input error!</code></p>
+<h3 id="【输入】-17">【输入】</h3>
+<p>输入的表示星期几的数字。</p>
+<h3 id="【输出】-17">【输出】</h3>
+<p>对应输出它的英文名称。</p>
+<h3 id="【输入样例】-17">【输入样例】</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">1<br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-17">【输出样例】</h3>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">Monday</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-type">int</span> x;<br>	cin&gt;&gt;x;<br>	<span class="hljs-keyword">switch</span>(x)&#123;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:<br>			cout&lt;&lt;<span class="hljs-string">&quot;Monday&quot;</span>;<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:<br>			cout&lt;&lt;<span class="hljs-string">&quot;Tuesday&quot;</span>;<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:<br>			cout&lt;&lt;<span class="hljs-string">&quot;Wednesday&quot;</span>;<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">4</span>:<br>			cout&lt;&lt;<span class="hljs-string">&quot;Thursday&quot;</span>;<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">5</span>:<br>			cout&lt;&lt;<span class="hljs-string">&quot;Friday&quot;</span>;<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">6</span>:<br>			cout&lt;&lt;<span class="hljs-string">&quot;Saturday&quot;</span>;<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">7</span>:<br>			cout&lt;&lt;<span class="hljs-string">&quot;Sunday&quot;</span>;<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">default</span>:<br>			cout&lt;&lt;<span class="hljs-string">&quot;input error!&quot;</span>;<br>			<span class="hljs-keyword">break</span>;<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="2058：简单计算器">2058：简单计算器</h2>
+<h3 id="【题目描述】-18">【题目描述】</h3>
+<p>一个最简单的计算器支持<code>+，-，*，/</code>四种运算。输入只有一行：两个参加运算的数和一个操作符(<code>+，-，*，/</code>)。输出运算表达式的结果。考虑下面两种情况：</p>
+<p>（1）如果出现除数为0的情况，则输出：<code>Divided by zero!</code></p>
+<p>（2）如果出现无效的操作符(即不为<code>+，-，*，/</code>之一)，则输出：<code>Invalid operator!</code></p>
+<h3 id="【输入】-18">【输入】</h3>
+<p>一行，前面两个数，再一个运算符号。</p>
+<h3 id="【输出】-18">【输出】</h3>
+<p>运算表达式的结果。</p>
+<h3 id="【输入样例】-18">【输入样例】</h3>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">34 </span><span class="hljs-number">56</span> +<br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-18">【输出样例】</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">90<br></code></pre></td></tr></table></figure>
+<h3 id="【提示】">【提示】</h3>
+<p>【样例2】</p>
+<p>输入：</p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">2 </span><span class="hljs-number">1.2</span> -<br></code></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">0</span>.<span class="hljs-number">8</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-type">double</span> x,y;<br>	<span class="hljs-type">char</span> op;<br>	cin&gt;&gt;x&gt;&gt;y&gt;&gt;op;<br>	<span class="hljs-keyword">switch</span>(op)&#123;<br>		<span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;+&#x27;</span>:<br>			cout&lt;&lt;x+y;<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;-&#x27;</span>:<br>			cout&lt;&lt;x-y;<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;*&#x27;</span>:<br>			cout&lt;&lt;x*y;<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;/&#x27;</span>:<br>			<span class="hljs-keyword">if</span>(y==<span class="hljs-number">0</span>)<br>				cout&lt;&lt;<span class="hljs-string">&quot;Divided by zero!&quot;</span>;<br>			<span class="hljs-keyword">else</span><br>				cout&lt;&lt;x/y;<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">default</span>:<br>			cout&lt;&lt;<span class="hljs-string">&quot;Invalid operator!&quot;</span>;<br>			<span class="hljs-keyword">break</span>;<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="2059：买笔">2059：买笔</h2>
+<h3 id="【题目描述】-19">【题目描述】</h3>
+<p>期末来临了，班长小Q决定将剩余班费x元钱，用于购买若干支钢笔奖励给一些学习好、表现好的同学。已知商店里有三种钢笔，它们的单价为6元、5元和4元。小Q想买尽量多的笔（鼓励尽量多的同学），同时他又不想有剩余钱。请您编一程序，帮小Q制订出一种买笔的方案。</p>
+<h3 id="【输入】-19">【输入】</h3>
+<p>一个正整数x（剩余班费）。</p>
+<h3 id="【输出】-19">【输出】</h3>
+<p>一行，依次为6元、5元和4元钱笔的数目，用一个空格隔开。</p>
+<h3 id="【输入样例】-19">【输入样例】</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">10<br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-19">【输出样例】</h3>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">1 </span><span class="hljs-number">0</span> <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+<h3 id="【分析】">【分析】</h3>
+<p>想要尽可能多买笔，就先买便宜的4元的，买完看剩余的钱</p>
+<p>剩0元 刚好</p>
+<p>剩1元 把一个4元换成5元</p>
+<p>剩2元 把一个4元换成6元</p>
+<p>剩3元 把两个4元换成5元6元</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-type">int</span> x,a=<span class="hljs-number">0</span>,b=<span class="hljs-number">0</span>,c=<span class="hljs-number">0</span>;<br>	cin&gt;&gt;x;<br>	c = x/<span class="hljs-number">4</span>;<br>	<span class="hljs-keyword">switch</span>(x%<span class="hljs-number">4</span>)&#123;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:<br>			b++;<br>			c--;<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:<br>			a++;<br>			c--;<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:<br>			a++;<br>			b++;<br>			c = c<span class="hljs-number">-2</span>;<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">default</span>:<br>			<span class="hljs-keyword">break</span>;<br>	&#125;<br>	cout&lt;&lt;a&lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;b&lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;c;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="1049：晶晶赴约会">1049：晶晶赴约会</h2>
+<h3 id="【题目描述】-20">【题目描述】</h3>
+<p>晶晶的朋友贝贝约晶晶下周一起去看展览，但晶晶每周的1、3、5有课必须上课，请帮晶晶判断她能否接受贝贝的邀请，如果能输出YES；如果不能则输出NO。注意YES和NO都是大写字母！</p>
+<h3 id="【输入】-20">【输入】</h3>
+<p>输入有一行，贝贝邀请晶晶去看展览的日期，用数字1到7表示从星期一到星期日。</p>
+<h3 id="【输出】-20">【输出】</h3>
+<p>输出有一行，如果晶晶可以接受贝贝的邀请，输出YES，否则，输出NO。注意YES和NO都是大写字母！</p>
+<h3 id="【输入样例】-20">【输入样例】</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">2<br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-20">【输出样例】</h3>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">YES</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-type">int</span> x;<br>	cin&gt;&gt;x;<br>	<span class="hljs-keyword">switch</span>(x)&#123;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">5</span>:<br>			cout&lt;&lt;<span class="hljs-string">&quot;NO&quot;</span>;<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">default</span>:<br>			cout&lt;&lt;<span class="hljs-string">&quot;YES&quot;</span>;<br>			<span class="hljs-keyword">break</span>;<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="1050：骑车与走路">1050：骑车与走路</h2>
+<h3 id="【题目描述】-21">【题目描述】</h3>
+<p>在清华校园里，没有自行车，上课办事会很不方便。但实际上。并非去办任何事情都是骑车快,因为骑车总要找车、开锁、停车、锁车等,这要耽误一些时间。假设找到自行车，开锁并骑上自行车的时间为27秒；停车锁车的时间为23秒；步行每秒行走1.2米，骑车每秒行走3.0米。请判断走不同的距离去办事,是骑车快还是走路快。如果骑车快，输出一行&quot;Bike&quot;；如果走路快，输出一行&quot;Walk&quot;；如果一样快，输出一行&quot;All&quot;。</p>
+<h3 id="【输入】-21">【输入】</h3>
+<p>输入一行，包含一个整数，表示一次办事要行走的距离,单位为米。</p>
+<h3 id="【输出】-21">【输出】</h3>
+<p>输出一行,如果骑车快,输出一行&quot;Bike&quot;;如果走路快,输出一行&quot;Walk&quot;;如果一样快,输出一行&quot;All&quot;。</p>
+<h3 id="【输入样例】-21">【输入样例】</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">120<br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-21">【输出样例】</h3>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">Bike</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-type">int</span> x;<br>	cin&gt;&gt;x;<br>	<span class="hljs-type">double</span> buxing = x/<span class="hljs-number">1.2</span>;<br>	<span class="hljs-type">double</span> qiche = <span class="hljs-number">50</span>+x/<span class="hljs-number">3.0</span>;<br>	<span class="hljs-type">int</span> c = buxing&gt;qiche;<br>	<span class="hljs-keyword">switch</span>(c)&#123;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:<br>			cout&lt;&lt;<span class="hljs-string">&quot;Bike&quot;</span>;<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">0</span>:<br>			cout&lt;&lt;<span class="hljs-string">&quot;Walk&quot;</span>;<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">default</span>:<br>			cout&lt;&lt;<span class="hljs-string">&quot;All&quot;</span>;<br>			<span class="hljs-keyword">break</span>;<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="1051：分段函数">1051：分段函数</h2>
+<h3 id="【题目描述】-22">【题目描述】</h3>
+<p>编写程序，计算下列分段函数y=f(x)的值。结果保留到小数点后三位。</p>
+<p>y=−x+2.5;	0≤x&lt;5</p>
+<p>y=2−1.5(x−3)(x−3);	5≤x&lt;10</p>
+<p>y=x/2−1.5;	10≤x&lt;20</p>
+<h3 id="【输入】-22">【输入】</h3>
+<p>一个浮点数N(0≤N&lt;20)。</p>
+<h3 id="【输出】-22">【输出】</h3>
+<p>输出 N对应的分段函数值：f(N)。结果保留到小数点后三位。</p>
+<h3 id="【输入样例】-22">【输入样例】</h3>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">1</span>.<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-22">【输出样例】</h3>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">1</span>.<span class="hljs-number">500</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-type">double</span> x;<br>	cin&gt;&gt;x;<br>	<span class="hljs-keyword">if</span>(x&lt;<span class="hljs-number">5</span>)<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%.3f&quot;</span>,<span class="hljs-number">2.5</span>-x);<br>	<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(x&lt;<span class="hljs-number">10</span>)<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%.3f&quot;</span>,<span class="hljs-number">2</span><span class="hljs-number">-1.5</span>*(x<span class="hljs-number">-3</span>)*(x<span class="hljs-number">-3</span>));<br>	<span class="hljs-keyword">else</span><br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%.3f&quot;</span>,x/<span class="hljs-number">2</span><span class="hljs-number">-1.5</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="1052：计算邮资">1052：计算邮资</h2>
+<h3 id="【题目描述】-23">【题目描述】</h3>
+<p>根据邮件的重量和用户是否选择加急计算邮费。计算规则：重量在1000克以内(包括1000克), 基本费8元。超过1000克的部分，每500克加收超重费4元，不足500克部分按500克计算；如果用户选择加急，多收5元。</p>
+<h3 id="【输入】-23">【输入】</h3>
+<p>输入一行，包含整数和一个字符，以一个空格分开，分别表示重量（单位为克）和是否加急。如果字符是y，说明选择加急；如果字符是n，说明不加急。</p>
+<h3 id="【输出】-23">【输出】</h3>
+<p>输出一行，包含一个整数，表示邮费。</p>
+<h3 id="【输入样例】-23">【输入样例】</h3>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">1200 </span>y<br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-23">【输出样例】</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">17<br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;cmath&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-type">int</span> x;<br>	<span class="hljs-type">char</span> s;<br>	cin&gt;&gt;x&gt;&gt;s;<br>	<span class="hljs-keyword">switch</span>(s)&#123;<br>		<span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;y&#x27;</span>:<br>			<span class="hljs-keyword">if</span>(x&lt;=<span class="hljs-number">1000</span>)<br>				cout&lt;&lt;<span class="hljs-number">8</span>+<span class="hljs-number">5</span>;<br>			<span class="hljs-keyword">else</span><br>				cout&lt;&lt;<span class="hljs-number">8</span>+<span class="hljs-number">5</span>+<span class="hljs-number">4</span>*<span class="hljs-built_in">ceil</span>(<span class="hljs-number">1.0</span>*(x<span class="hljs-number">-1000</span>)/<span class="hljs-number">500</span>);<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;n&#x27;</span>:<br>			<span class="hljs-keyword">if</span>(x&lt;=<span class="hljs-number">1000</span>)<br>				cout&lt;&lt;<span class="hljs-number">8</span>;<br>			<span class="hljs-keyword">else</span><br>				cout&lt;&lt;<span class="hljs-number">8</span>+<span class="hljs-number">4</span>*<span class="hljs-built_in">ceil</span>(<span class="hljs-number">1.0</span>*(x<span class="hljs-number">-1000</span>)/<span class="hljs-number">500</span>);<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">default</span>:<br>			<span class="hljs-keyword">break</span>;<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="1053：最大数输出">1053：最大数输出</h2>
+<h3 id="【题目描述】-24">【题目描述】</h3>
+<p>输入三个整数，数与数之间以一个空格分开。 输出一个整数，即最大的整数。</p>
+<h3 id="【输入】-24">【输入】</h3>
+<p>输入为一行，包含三个整数，数与数之间以一个空格分开。</p>
+<h3 id="【输出】-24">【输出】</h3>
+<p>输出一行，包含一个整数，即最大的整数。</p>
+<h3 id="【输入样例】-24">【输入样例】</h3>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">10 </span><span class="hljs-number">20</span> <span class="hljs-number">56</span><br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-24">【输出样例】</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">56<br></code></pre></td></tr></table></figure>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-type">int</span> max,mid,min,tmp;<br>	cin&gt;&gt;max&gt;&gt;mid&gt;&gt;min;<br>	<span class="hljs-keyword">if</span>(min&gt;mid)&#123;<br>		tmp = min;<br>		min = mid;<br>		mid = tmp;<br>	&#125;<br>	<span class="hljs-keyword">if</span>(mid&gt;max)&#123;<br>		tmp = mid;<br>		mid = max;<br>		max = tmp;<br>	&#125;<br>	cout&lt;&lt;max;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="1054：三角形判断">1054：三角形判断</h2>
+<h3 id="【题目描述】-25">【题目描述】</h3>
+<p>给定三个正整数，分别表示三条线段的长度，判断这三条线段能否构成一个三角形。如果能构成三角形，则输出“yes”，否则输出“no”。</p>
+<h3 id="【输入】-25">【输入】</h3>
+<p>输入共一行，包含三个正整数，分别表示三条线段的长度，数与数之间以一个空格分开。</p>
+<h3 id="【输出】-25">【输出】</h3>
+<p>如果能构成三角形，则输出“yes” ，否则输出“no”。</p>
+<h3 id="【输入样例】-25">【输入样例】</h3>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">3 </span><span class="hljs-number">4</span> <span class="hljs-number">5</span><br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-25">【输出样例】</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">yes</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-type">int</span> a,b,c;<br>	cin&gt;&gt;a&gt;&gt;b&gt;&gt;c;<br>	<span class="hljs-keyword">if</span>(a+b&gt;c &amp;&amp; a+c&gt;b &amp;&amp; b+c&gt;a)<br>		cout&lt;&lt;<span class="hljs-string">&quot;yes&quot;</span>;<br>	<span class="hljs-keyword">else</span><br>		cout&lt;&lt;<span class="hljs-string">&quot;no&quot;</span>;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="1055：判断闰年">1055：判断闰年</h2>
+<h3 id="【题目描述】-26">【题目描述】</h3>
+<p>判断某年是否是闰年。如果公元a年是闰年输出Y，否则输出N。</p>
+<h3 id="【输入】-26">【输入】</h3>
+<p>输入只有一行，包含一个整数a(0 &lt; a &lt; 3000)。</p>
+<h3 id="【输出】-26">【输出】</h3>
+<p>一行，如果公元a年是闰年输出Y，否则输出N。</p>
+<h3 id="【输入样例】-26">【输入样例】</h3>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-number">2006</span><br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-26">【输出样例】</h3>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">N</span><br></code></pre></td></tr></table></figure>
+<h3 id="【分析】-2">【分析】</h3>
+<p>闰年的判断标准</p>
+<p>（四年一闰 <strong>并且</strong> 百年不闰） <strong>或者</strong> 四百年再闰</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-type">int</span> a;<br>	cin&gt;&gt;a;<br>	<span class="hljs-keyword">if</span>((a%<span class="hljs-number">4</span>==<span class="hljs-number">0</span> &amp;&amp; a%<span class="hljs-number">100</span>!=<span class="hljs-number">0</span>) || a%<span class="hljs-number">400</span>==<span class="hljs-number">0</span>)<br>		cout&lt;&lt;<span class="hljs-string">&quot;Y&quot;</span>;<br>	<span class="hljs-keyword">else</span><br>		cout&lt;&lt;<span class="hljs-string">&quot;N&quot;</span>;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="1056：点和正方形的关系">1056：点和正方形的关系</h2>
+<h3 id="【题目描述】-27">【题目描述】</h3>
+<p>有一个正方形，四个角的坐标（x,y)分别是(1，-1)，(1，1)，(-1，-1)，(-1，1)，x是横轴，y是纵轴。写一个程序，判断一个给定的点是否在这个正方形内(包括正方形边界)。如果点在正方形内，则输出yes，否则输出no。</p>
+<h3 id="【输入】-27">【输入】</h3>
+<p>输入一行，包括两个整数x、y，以一个空格分开，表示坐标(x,y)。</p>
+<h3 id="【输出】-27">【输出】</h3>
+<p>输出一行，如果点在正方形内，则输出yes，否则输出no。</p>
+<h3 id="【输入样例】-27">【输入样例】</h3>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">1 </span><span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-27">【输出样例】</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">yes</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-type">int</span> x,y;<br>	cin&gt;&gt;x&gt;&gt;y;<br>	<span class="hljs-keyword">if</span>(x&gt;=<span class="hljs-number">-1</span> &amp;&amp; x&lt;=<span class="hljs-number">1</span> &amp;&amp; y&gt;=<span class="hljs-number">-1</span> &amp;&amp; y&lt;=<span class="hljs-number">1</span>)<br>		cout&lt;&lt;<span class="hljs-string">&quot;yes&quot;</span>;<br>	<span class="hljs-keyword">else</span><br>		cout&lt;&lt;<span class="hljs-string">&quot;no&quot;</span>;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="1058：求一元二次方程">1058：求一元二次方程</h2>
+<h3 id="【题目描述】-28">【题目描述】</h3>
+<p>利用公式</p>
+<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>x</mi><mn>1</mn><mo>=</mo><mfrac><mrow><mo>−</mo><mi>b</mi><mo>+</mo><msqrt><mrow><msup><mi>b</mi><mn>2</mn></msup><mo>−</mo><mn>4</mn><mi>a</mi><mi>c</mi></mrow></msqrt></mrow><mrow><mn>2</mn><mi>a</mi></mrow></mfrac><mtext>，</mtext><mi>x</mi><mn>2</mn><mo>=</mo><mfrac><mrow><mo>−</mo><mi>b</mi><mo>−</mo><msqrt><mrow><msup><mi>b</mi><mn>2</mn></msup><mo>−</mo><mn>4</mn><mi>a</mi><mi>c</mi></mrow></msqrt></mrow><mrow><mn>2</mn><mi>a</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">x1=\frac{−b+\sqrt{b^2−4ac}}{2a}，x2=\frac{−b-\sqrt{b^2−4ac}}{2a}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord mathnormal">x</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.2764em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.5904em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span><span class="mord mathnormal">a</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">−</span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9134em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">4</span><span class="mord mathnormal">a</span><span class="mord mathnormal">c</span></span></span><span style="top:-2.8734em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.08em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1266em;"><span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord cjk_fallback">，</span><span class="mord mathnormal">x</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.2764em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.5904em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span><span class="mord mathnormal">a</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">−</span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9134em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">4</span><span class="mord mathnormal">a</span><span class="mord mathnormal">c</span></span></span><span style="top:-2.8734em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.08em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1266em;"><span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>，求一元二次方程</p>
+<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>a</mi><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mi>b</mi><mi>x</mi><mo>+</mo><mi>c</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">ax^2+bx+c=0
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9474em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">a</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">b</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span></p>
+<p>的根，其中a不等于0。结果要求精确到小数点后5位。</p>
+<h3 id="【输入】-28">【输入】</h3>
+<p>输入一行，包含三个浮点数a,b,c（它们之间以一个空格分开），分别表示方程</p>
+<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>a</mi><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mi>b</mi><mi>x</mi><mo>+</mo><mi>c</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">ax^2+bx+c=0
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9474em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">a</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">b</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span></p>
+<p>的系数。</p>
+<h3 id="【输出】-28">【输出】</h3>
+<p>输出一行，表示方程的解。</p>
+<p>若两个实根相等，则输出形式为：“x1=x2=…”；</p>
+<p>若两个实根不等，在满足根小者在前的原则，则输出形式为：“x1=…;x2=…“；</p>
+<p>若无实根输出“No answer!”。</p>
+<p>所有输出部分要求精确到小数点后5位，数字、符号之间没有空格。</p>
+<h3 id="【输入样例】-28">【输入样例】</h3>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs diff"><span class="hljs-deletion">-15.97 19.69 12.02</span><br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-28">【输出样例】</h3>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">x1</span>=-<span class="hljs-number">0</span>.<span class="hljs-number">44781</span>;x2=<span class="hljs-number">1</span>.<span class="hljs-number">68075</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#inlcude<span class="hljs-string">&lt;cmath&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-type">double</span> a,b,c,x1,x2;<br>	cin&gt;&gt;a&gt;&gt;b&gt;&gt;c;<br>	<span class="hljs-keyword">if</span>((b*b<span class="hljs-number">-4</span>*a*c)&lt;<span class="hljs-number">0</span>)&#123;<br>		cout&lt;&lt;<span class="hljs-string">&quot;No answer!&quot;</span>;<br>		<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>	&#125;<br>	x1 = (<span class="hljs-built_in">sqrt</span>(b*b<span class="hljs-number">-4</span>*a*c)-b)/(<span class="hljs-number">2</span>*a);<br>	x2 = (<span class="hljs-number">0</span>-<span class="hljs-built_in">sqrt</span>(b*b<span class="hljs-number">-4</span>*a*c)-b)/(<span class="hljs-number">2</span>*a)<br>	<span class="hljs-keyword">switch</span>(<span class="hljs-number">1</span>)&#123;<br>		<span class="hljs-built_in">case</span> (x1==x2):<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s%.5f&quot;</span>,<span class="hljs-string">&quot;x1=x2=&quot;</span>,x1);<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-built_in">case</span> (x1!=x2):<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s%.5f%s%.5f&quot;</span>,<span class="hljs-string">&quot;x1=&quot;</span>,x1,<span class="hljs-string">&quot;;x2=&quot;</span>,x2);<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">default</span>:<br>			<span class="hljs-keyword">break</span>;<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>程序的控制结构</div>
+      <div>http://example.com/2024/04/23/程序的控制结构/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>EricWang</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>April 23, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/04/23/%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" title="循环结构的程序设计">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">循环结构的程序设计</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/04/16/hexo-setup/" title="hexo搭建流程">
+                        <span class="hidden-mobile">hexo搭建流程</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
