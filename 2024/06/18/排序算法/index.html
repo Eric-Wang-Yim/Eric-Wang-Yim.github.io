@@ -1,0 +1,848 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/davidblue.jpg">
+  <link rel="icon" href="/img/davidblue.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="EricWang">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="排序算法 1.冒泡排序 最基本冒泡排序 双重循环，第一层循环控制循环几次，第二层循环从左到右查看是否需要交换数字，第二层循环每次都从数组最左侧开始，右侧边界每次少1个因为每经历一次第二层循环都会确定出一个最大的数放在右边界因此可以少比较一个。 设置标志位提前结束 在最基本的冒泡排序基础上，设置标志位，以查看上一轮循环是否交换了数据，如果上一轮循环没有交换数据那就说明已经排序完成，可以直接结束循环。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="排序算法">
+<meta property="og:url" content="http://example.com/2024/06/18/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="排序算法 1.冒泡排序 最基本冒泡排序 双重循环，第一层循环控制循环几次，第二层循环从左到右查看是否需要交换数字，第二层循环每次都从数组最左侧开始，右侧边界每次少1个因为每经历一次第二层循环都会确定出一个最大的数放在右边界因此可以少比较一个。 设置标志位提前结束 在最基本的冒泡排序基础上，设置标志位，以查看上一轮循环是否交换了数据，如果上一轮循环没有交换数据那就说明已经排序完成，可以直接结束循环。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-06-18T07:48:17.000Z">
+<meta property="article:modified_time" content="2024-06-18T02:56:34.767Z">
+<meta property="article:author" content="EricWang">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>排序算法 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>EricWang</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/gulingjie1.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="排序算法"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        EricWang
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-18 15:48" pubdate>
+          June 18, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.2k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          52 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">排序算法</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1>排序算法</h1>
+<h2 id="1-冒泡排序">1.冒泡排序</h2>
+<h3 id="最基本冒泡排序">最基本冒泡排序</h3>
+<p>双重循环，第一层循环控制循环几次，第二层循环从左到右查看是否需要交换数字，第二层循环每次都从数组最左侧开始，右侧边界每次少1个因为每经历一次第二层循环都会确定出一个最大的数放在右边界因此可以少比较一个。</p>
+<h3 id="设置标志位提前结束">设置标志位提前结束</h3>
+<p>在最基本的冒泡排序基础上，设置标志位，以查看上一轮循环是否交换了数据，如果上一轮循环没有交换数据那就说明已经排序完成，可以直接结束循环。</p>
+<h3 id="设置结束边界">设置结束边界</h3>
+<p>在最基本的冒泡排序基础上，记录上一轮交换什么时候结束的，下一轮交换进行到上一轮结束边界。</p>
+<h3 id="双向冒泡排序">双向冒泡排序</h3>
+<p>鸡尾酒排序法，每轮循环分两个部分，第一个部分从左到右交换，第二个部分从右到左交换，提高效率。可以在双向冒泡排序的基础上增加标志位和结束边界。</p>
+<h2 id="2-选择排序">2.选择排序</h2>
+<p>循环遍历，从第一个开始找，找到最小的数与第一个交换；再从第二个开始找，找到最小的与第二个交换。</p>
+<p>不断的选择剩余元素中最小的那个。</p>
+<h2 id="3-插入排序">3.插入排序</h2>
+<p>类似于打牌，将当前牌插进已有的有序的牌堆中，插入后要将当前牌之后的所有牌都右移</p>
+<h2 id="1310：车厢重组">1310：车厢重组</h2>
+<h3 id="【题目描述】">【题目描述】</h3>
+<p>在一个旧式的火车站旁边有一座桥，其桥面可以绕河中心的桥墩水平旋转。一个车站的职工发现桥的长度最多能容纳两节车厢，如果将桥旋转180度，则可以把相邻两节车厢的位置交换，用这种方法可以重新排列车厢的顺序。于是他就负责用这座桥将进站的车厢按车厢号从小到大排列。他退休后，火车站决定将这一工作自动化，其中一项重要的工作是编一个程序，输入初始的车厢顺序，计算最少用多少步就能将车厢排序。</p>
+<h3 id="【输入】">【输入】</h3>
+<p>有两行数据，第一行是车厢总数N（不大于10000），第二行是N个不同的数表示初始的车厢顺序。</p>
+<h3 id="【输出】">【输出】</h3>
+<p>一个数据，是最少的旋转次数。</p>
+<h3 id="【输入样例】">【输入样例】</h3>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">4 </span><br><span class="hljs-symbol">4 </span><span class="hljs-number">3</span> <span class="hljs-number">2</span> <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】">【输出样例】</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">6<br></code></pre></td></tr></table></figure>
+<p>本质上是冒泡排序，一次换两个位置</p>
+<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs excel">#include&lt;iostream&gt;<br>using namespace std;<br><span class="hljs-built_in">int</span> main()&#123;<br>    <span class="hljs-built_in">int</span> <span class="hljs-built_in">n</span>,a[<span class="hljs-number">10000</span>],<span class="hljs-built_in">sum</span>=<span class="hljs-number">0</span>;<br>    cin&gt;&gt;<span class="hljs-built_in">n</span>;<br>    for(<span class="hljs-built_in">int</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-built_in">n</span>;i++)<br>        cin&gt;&gt;a[i];<br>    for(<span class="hljs-built_in">int</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-built_in">n</span>;i++)&#123;<br>        for(<span class="hljs-built_in">int</span> j=<span class="hljs-number">0</span>;j&lt;<span class="hljs-built_in">n</span>-i-<span class="hljs-number">1</span>;j++)&#123;<br>            <span class="hljs-built_in">if</span>(a[j] &gt; a[j+<span class="hljs-number">1</span>])&#123;<br>                <span class="hljs-built_in">int</span> tmp = a[j];<br>                a[j] = a[j+<span class="hljs-number">1</span>];<br>                a[j+<span class="hljs-number">1</span>] = tmp;<br>                <span class="hljs-built_in">sum</span>++;<br>            &#125;<br>        &#125;<br>    &#125;<br>    cout&lt;&lt;<span class="hljs-built_in">sum</span>;<br>    return <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="1311：求逆序对">1311：求逆序对</h2>
+<h3 id="【题目描述】-2">【题目描述】</h3>
+<p>给定一个序列a1,a2,…,an，如果存在i&lt;j并且ai&gt;aj，那么我们称之为逆序对，求逆序对的数目。</p>
+<h3 id="【输入】-2">【输入】</h3>
+<p>第一行为n,表示序列长度，接下来的n行，第i+1行表示序列中的第i个数。</p>
+<h3 id="【输出】-2">【输出】</h3>
+<p>所有逆序对总数。</p>
+<h3 id="【输入样例】-2">【输入样例】</h3>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">4 </span><br><span class="hljs-symbol">3 </span><br><span class="hljs-symbol">2 </span><br><span class="hljs-symbol">3 </span><br><span class="hljs-number">2</span><br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-2">【输出样例】</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">3<br></code></pre></td></tr></table></figure>
+<h3 id="【提示】">【提示】</h3>
+<p>N≤10^5，Ai≤10^5。</p>
+<p>从小到大进行比较</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs"><br></code></pre></td></tr></table></figure>
+<h2 id="1176：谁考了第k名">1176：谁考了第k名</h2>
+<h3 id="【题目描述】-3">【题目描述】</h3>
+<p>在一次考试中，每个学生的成绩都不相同，现知道了每个学生的学号和成绩，求考第k名学生的学号和成绩。</p>
+<h3 id="【输入】-3">【输入】</h3>
+<p>第一行有两个整数，分别是学生的人数n（1≤n≤100），和求第k名学生的k（1≤k≤n）。</p>
+<p>其后有n行数据，每行包括一个学号（整数）和一个成绩（浮点数），中间用一个空格分隔。</p>
+<h3 id="【输出】-3">【输出】</h3>
+<p>输出第k名学生的学号和成绩，中间用空格分隔。（注：请用%g输出成绩）</p>
+<h3 id="【输入样例】-3">【输入样例】</h3>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">5 </span><span class="hljs-number">3</span> <br><span class="hljs-symbol">90788001 </span><span class="hljs-number">67.8</span> <br><span class="hljs-symbol">90788002 </span><span class="hljs-number">90.3</span> <br><span class="hljs-symbol">90788003 </span><span class="hljs-number">61</span> <br><span class="hljs-symbol">90788004 </span><span class="hljs-number">68.4</span> <br><span class="hljs-symbol">90788005 </span><span class="hljs-number">73.9</span><br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-3">【输出样例】</h3>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">90788004 </span><span class="hljs-number">68.4</span><br></code></pre></td></tr></table></figure>
+<p>使用插入排序，每次找到最大的那个，放到首位，然后找3次即可</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-type">int</span> n,k;<br>	cin&gt;&gt;n&gt;&gt;k;<br>	<span class="hljs-type">int</span> num[<span class="hljs-number">101</span>];<br>	<span class="hljs-type">double</span> score[<span class="hljs-number">101</span>];<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)<br>		cin&gt;&gt;num[i]&gt;&gt;score[i];<br>	<span class="hljs-comment">//插入排序，每次找最大的，找k次</span><br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i =<span class="hljs-number">0</span>;i&lt;k;i++)&#123;<br>		<span class="hljs-type">int</span> max=i;<br>		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=i+<span class="hljs-number">1</span>;j&lt;n;j++)&#123;<br>			<span class="hljs-keyword">if</span>(score[max]&lt;score[j])&#123;<br>				max = j;<br>			&#125;<br>		&#125;<br>		<span class="hljs-type">double</span> tmp = score[max];<br>		score[max] = score[i];<br>		score[i] = tmp;<br>		<span class="hljs-type">int</span> s = num[max];<br>		num[max] = num[i];<br>		num[i] = s;<br>	&#125;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d %g&quot;</span>,num[k<span class="hljs-number">-1</span>],score[k<span class="hljs-number">-1</span>]);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="1177：奇数单增序列">1177：奇数单增序列</h2>
+<h3 id="【题目描述】-4">【题目描述】</h3>
+<p>给定一个长度为N（不大于500）的正整数序列，请将其中的所有奇数取出，并按升序输出。</p>
+<h3 id="【输入】-4">【输入】</h3>
+<p>第1行为 N；</p>
+<p>第2行为 N 个正整数，其间用空格间隔。</p>
+<h3 id="【输出】-4">【输出】</h3>
+<p>增序输出的奇数序列，数据之间以逗号间隔。数据保证至少有一个奇数。</p>
+<h3 id="【输入样例】-4">【输入样例】</h3>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">10 </span><br><span class="hljs-symbol">1 </span><span class="hljs-number">3</span> <span class="hljs-number">2</span> <span class="hljs-number">6</span> <span class="hljs-number">5</span> <span class="hljs-number">4</span> <span class="hljs-number">9</span> <span class="hljs-number">8</span> <span class="hljs-number">7</span> <span class="hljs-number">10</span><br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-4">【输出样例】</h3>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-number">7</span>,<span class="hljs-number">9</span><br></code></pre></td></tr></table></figure>
+<p>类似于从牌堆里摸牌，摸到奇数然后插入进奇数牌堆里，这种需要在一个大循环中，嵌套一个小循环找奇数堆里的位置，找到之后还需要对奇数堆向右移动，最差的情况下，奇数是从大到小插入进去的，找奇数位置和右移会导致时间复杂度为O(n^3)。</p>
+<p>先找出所有奇数，再冒泡排序，时间复杂度为O(n^2)</p>
+<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs excel">#include&lt;iostream&gt;<br>using namespace std;<br><span class="hljs-built_in">int</span> main()&#123;<br>	<span class="hljs-built_in">int</span> <span class="hljs-built_in">n</span>;<br>	cin&gt;&gt;<span class="hljs-built_in">n</span>;<br>	<span class="hljs-built_in">int</span> num[<span class="hljs-number">500</span>];<br>	for(<span class="hljs-built_in">int</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-built_in">n</span>;i++)<br>		cin&gt;&gt;num[i];<br>    <span class="hljs-built_in">int</span> <span class="hljs-built_in">len</span>=<span class="hljs-number">0</span>,<span class="hljs-built_in">odd</span>[<span class="hljs-number">500</span>]=&#123;<span class="hljs-number">0</span>&#125;;<br>	for(<span class="hljs-built_in">int</span> i =<span class="hljs-number">0</span>;i&lt;<span class="hljs-built_in">n</span>;i++)&#123;<br>		<span class="hljs-built_in">if</span>(num[i]%<span class="hljs-number">2</span>==<span class="hljs-number">1</span>)<br>            <span class="hljs-built_in">odd</span>[<span class="hljs-built_in">len</span>++] = num[i];<br>	&#125;<br>    for(<span class="hljs-built_in">int</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-built_in">len</span>;i++)&#123;<br>        for(<span class="hljs-built_in">int</span> j=<span class="hljs-number">0</span>;j&lt;<span class="hljs-built_in">len</span>-i-<span class="hljs-number">1</span>;j++)&#123;<br>            <span class="hljs-built_in">if</span>(<span class="hljs-built_in">odd</span>[j]&gt;<span class="hljs-built_in">odd</span>[j+<span class="hljs-number">1</span>])&#123;<br>                <span class="hljs-built_in">int</span> tmp = <span class="hljs-built_in">odd</span>[j];<br>                <span class="hljs-built_in">odd</span>[j] = <span class="hljs-built_in">odd</span>[j+<span class="hljs-number">1</span>];<br>                <span class="hljs-built_in">odd</span>[j+<span class="hljs-number">1</span>] = tmp;<br>            &#125;<br>        &#125;<br>    &#125;<br>    for(<span class="hljs-built_in">int</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-built_in">len</span>;i++)&#123;<br>        <span class="hljs-built_in">if</span>(i==<span class="hljs-number">0</span>)<br>            cout&lt;&lt;<span class="hljs-built_in">odd</span>[i];<br>        else&#123;<br>            cout&lt;&lt;<span class="hljs-string">&quot;,&quot;</span>&lt;&lt;<span class="hljs-built_in">odd</span>[i];<br>        &#125;<br>    &#125;<br>	return <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="1178：成绩排序">1178：成绩排序</h2>
+<h3 id="【题目描述】-5">【题目描述】</h3>
+<p>给出班里某门课程的成绩单，请你按成绩从高到低对成绩单排序输出，如果有相同分数则名字字典序小的在前。</p>
+<h3 id="【输入】-5">【输入】</h3>
+<p>第一行为n (0 &lt; n &lt; 20)，表示班里的学生数目；</p>
+<p>接下来的n行，每行为每个学生的名字和他的成绩, 中间用单个空格隔开。名字只包含字母且长度不超过20，成绩为一个不大于100的非负整数。</p>
+<h3 id="【输出】-5">【输出】</h3>
+<p>把成绩单按分数从高到低的顺序进行排序并输出，每行包含名字和分数两项，之间有一个空格。</p>
+<h3 id="【输入样例】-5">【输入样例】</h3>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">4</span> <br><span class="hljs-attribute">Kitty</span> <span class="hljs-number">80</span> <br><span class="hljs-attribute">Hanmeimei</span> <span class="hljs-number">90</span> <br><span class="hljs-attribute">Joey</span> <span class="hljs-number">92</span> <br><span class="hljs-attribute">Tim</span> <span class="hljs-number">28</span><br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-5">【输出样例】</h3>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">Joey</span> <span class="hljs-number">92</span> <br><span class="hljs-attribute">Hanmeimei</span> <span class="hljs-number">90</span>  <br><span class="hljs-attribute">Kitty</span> <span class="hljs-number">80</span> <br><span class="hljs-attribute">Tim</span> <span class="hljs-number">28</span><br></code></pre></td></tr></table></figure>
+<p>使用选择排序，每次选择第i个作为最大值，判断之后的成绩是否比他大，成绩一样大的时候判断字典序，使用string自带的重载运算符&lt;比较字符串的大小，最后找到最大值放到第i个。</p>
+<figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs sqf"><span class="hljs-meta">#<span class="hljs-keyword">include</span>&lt;iostream&gt;</span><br>using namespace std;<br>int main()&#123;<br>    int n;<br>    cin&gt;&gt;n;<br>    int <span class="hljs-built_in">score</span>[<span class="hljs-number">20</span>];<br>    string <span class="hljs-built_in">name</span>[<span class="hljs-number">20</span>];<br>    <span class="hljs-keyword">for</span>(int i=<span class="hljs-number">0</span>;i&lt;n;i++)<br>        cin&gt;&gt;<span class="hljs-built_in">name</span>[i]&gt;&gt;<span class="hljs-built_in">score</span>[i];<br>    <span class="hljs-keyword">for</span>(int i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;<br>        int <span class="hljs-built_in">max</span> = i;<br>        <span class="hljs-keyword">for</span>(int j=i+<span class="hljs-number">1</span>;j&lt;n;j++)&#123;<br>            <span class="hljs-keyword">if</span>(<span class="hljs-built_in">score</span>[<span class="hljs-built_in">max</span>]&lt;<span class="hljs-built_in">score</span>[j])&#123;<br>                <span class="hljs-built_in">max</span> = j;<br>            &#125;<br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(<span class="hljs-built_in">score</span>[<span class="hljs-built_in">max</span>]==<span class="hljs-built_in">score</span>[j] &amp;&amp; <span class="hljs-built_in">name</span>[j]&lt;<span class="hljs-built_in">name</span>[<span class="hljs-built_in">max</span>])&#123;<br>                <span class="hljs-built_in">max</span> = j;<br>            &#125;<br>        &#125;<br>        int tmp = <span class="hljs-built_in">score</span>[<span class="hljs-built_in">max</span>];<br>        <span class="hljs-built_in">score</span>[<span class="hljs-built_in">max</span>] = <span class="hljs-built_in">score</span>[i];<br>        <span class="hljs-built_in">score</span>[i] = tmp;<br>        string stmp = <span class="hljs-built_in">name</span>[<span class="hljs-built_in">max</span>];<br>        <span class="hljs-built_in">name</span>[<span class="hljs-built_in">max</span>] = <span class="hljs-built_in">name</span>[i];<br>        <span class="hljs-built_in">name</span>[i] = stmp;<br>    &#125;<br>    <span class="hljs-keyword">for</span>(int i=<span class="hljs-number">0</span>;i&lt;n;i++)<br>        cout&lt;&lt;<span class="hljs-built_in">name</span>[i]&lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;<span class="hljs-built_in">score</span>[i]&lt;&lt;<span class="hljs-literal">endl</span>;<br>	return <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="1179：奖学金">1179：奖学金</h2>
+<h3 id="【题目描述】-6">【题目描述】</h3>
+<p>某小学最近得到了一笔赞助，打算拿出其中一部分为学习成绩优秀的前55名学生发奖学金。期末，每个学生都有33门课的成绩:语文、数学、英语。先按总分从高到低排序，如果两个同学总分相同，再按语文成绩从高到低排序，如果两个同学总分和语文成绩都相同，那么规定学号小的同学排在前面，这样，每个学生的排序是唯一确定的。</p>
+<p>任务：先根据输入的33门课的成绩计算总分，然后按上述规则排序，最后按排名顺序输出前五名名学生的学号和总分。注意，在前55名同学中，每个人的奖学金都不相同，因此，你必须严格按上述规则排序。例如，在某个正确答案中，如果前两行的输出数据(每行输出两个数:学号、总分) 是:</p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">7 </span><span class="hljs-number">279</span><br><span class="hljs-symbol">5 </span><span class="hljs-number">279</span><br></code></pre></td></tr></table></figure>
+<p>这两行数据的含义是:总分最高的两个同学的学号依次是77号、55号。这两名同学的总分都是 279279 (总分等于输入的语文、数学、英语三科成绩之和) ，但学号为7的学生语文成绩更高一些。如果你的前两名的输出数据是:</p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">5 </span><span class="hljs-number">279</span><br><span class="hljs-symbol">7 </span><span class="hljs-number">279</span><br></code></pre></td></tr></table></figure>
+<p>则按输出错误处理，不能得分。</p>
+<h3 id="【输入】-6">【输入】</h3>
+<p>包含n+1行:</p>
+<p>第1行为一个正整数n（小于300），表示该校参加评选的学生人数。</p>
+<p>第2到n+1行，每行有3个用空格隔开的数字，每个数字都在0到100之间。第j行的3个数字依次表示学号为 j−1的学生的语文、数学、英语的成绩。每个学生的学号按照输入顺序编号为1∼n(恰好是输入数据的行号减1)。</p>
+<h3 id="【输出】-6">【输出】</h3>
+<p>共有5行，每行是两个用空格隔开的正整数，依次表示前5名学生的学号和总分。</p>
+<h3 id="【输入样例】-6">【输入样例】</h3>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">6 </span><br><span class="hljs-symbol">90 </span><span class="hljs-number">67</span> <span class="hljs-number">80</span> <br><span class="hljs-symbol">87 </span><span class="hljs-number">66</span> <span class="hljs-number">91</span> <br><span class="hljs-symbol">78 </span><span class="hljs-number">89</span> <span class="hljs-number">91</span> <br><span class="hljs-symbol">88 </span><span class="hljs-number">99</span> <span class="hljs-number">77</span> <br><span class="hljs-symbol">67 </span><span class="hljs-number">89</span> <span class="hljs-number">64</span> <br><span class="hljs-symbol">78 </span><span class="hljs-number">89</span> <span class="hljs-number">98</span><br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-6">【输出样例】</h3>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">6 </span><span class="hljs-number">265</span> <br><span class="hljs-symbol">4 </span><span class="hljs-number">264</span> <br><span class="hljs-symbol">3 </span><span class="hljs-number">258</span> <br><span class="hljs-symbol">2 </span><span class="hljs-number">244</span> <br><span class="hljs-symbol">1 </span><span class="hljs-number">237</span> <br></code></pre></td></tr></table></figure>
+<h3 id="【提示】-2">【提示】</h3>
+<p>样例输入#2：</p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-number">8</span><br><span class="hljs-symbol">80 </span><span class="hljs-number">89</span> <span class="hljs-number">89</span> <br><span class="hljs-symbol">88 </span><span class="hljs-number">98</span> <span class="hljs-number">78</span><br><span class="hljs-symbol">90 </span><span class="hljs-number">67</span> <span class="hljs-number">80</span><br><span class="hljs-symbol">87 </span><span class="hljs-number">66</span> <span class="hljs-number">91</span><br><span class="hljs-symbol">78 </span><span class="hljs-number">89</span> <span class="hljs-number">91</span><br><span class="hljs-symbol">88 </span><span class="hljs-number">99</span> <span class="hljs-number">77</span><br><span class="hljs-symbol">67 </span><span class="hljs-number">89</span> <span class="hljs-number">64</span><br><span class="hljs-symbol">78 </span><span class="hljs-number">89</span> <span class="hljs-number">98</span><br></code></pre></td></tr></table></figure>
+<p>样例输出#2：</p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">8 </span><span class="hljs-number">265</span><br><span class="hljs-symbol">2 </span><span class="hljs-number">264</span><br><span class="hljs-symbol">6 </span><span class="hljs-number">264</span><br><span class="hljs-symbol">1 </span><span class="hljs-number">258</span><br><span class="hljs-symbol">5 </span><span class="hljs-number">258</span><br></code></pre></td></tr></table></figure>
+<p>与上一题类似，选择排序，然后对总成绩判断-&gt;对语文成绩判断-&gt;对学号判断，选择5次找到最好的5个人就可以了</p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs prolog">#include&lt;iostream&gt;<br>using namespace std;<br>int main()&#123;<br>    int n;<br>    cin&gt;&gt;n;<br>    int num[<span class="hljs-number">300</span>],chinese[<span class="hljs-number">300</span>],math,english,score[<span class="hljs-number">300</span>];<br>    for(int i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>        cin&gt;&gt;chinese[i]&gt;&gt;math&gt;&gt;english;<br>        score[i] = chinese[i]+math+english;<br>        num[i] = i;<br>    &#125;<br>    for(int i=<span class="hljs-number">1</span>;i&lt;=<span class="hljs-number">5</span>;i++)&#123;<br>        int max = i;<br>        for(int j=i+<span class="hljs-number">1</span>;j&lt;=n;j++)&#123;<br>            if(score[max] &lt; score[j])<br>                max = j;<br>            else if(score[max]==score[j] &amp;&amp; chinese[max]&lt;chinese[j])<br>                max = j;<br>            else if(score[max]==score[j] &amp;&amp; chinese[max]==chinese[j] &amp;&amp; num[max]&gt;num[j])<br>                max = j;<br>        &#125;<br>        int tmp = score[max];<br>        score[max] = score[i];<br>        score[i] = tmp;<br>        tmp = num[max];<br>        num[max] = num[i];<br>        num[i] = tmp;<br>    &#125;<br>    for(int i=<span class="hljs-number">1</span>;i&lt;=<span class="hljs-number">5</span>;i++)<br>        cout&lt;&lt;num[i]&lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;score[i]&lt;&lt;endl;<br>	return <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="1180：分数线划定">1180：分数线划定</h2>
+<h3 id="【题目描述】-7">【题目描述】</h3>
+<p>世博会志愿者的选拔工作正在 A 市如火如荼的进行。为了选拔最合适的人才，A市对所有报名的选手进行了笔试，笔试分数达到面试分数线的选手方可进入面试。面试分数线根据计划录取人数的150%150%划定，即如果计划录取m𝑚名志愿者，则面试分数线为排名第m×150%𝑚×150%（向下取整）名的选手的分数，而最终进入面试的选手为笔试成绩不低于面试分数线的所有选手。</p>
+<p>现在就请你编写程序划定面试分数线，并输出所有进入面试的选手的报名号和笔试成绩。</p>
+<h3 id="【输入】-7">【输入】</h3>
+<p>第一行，两个整数n，m（5≤n≤5000，3≤m≤n），中间用一个空格隔开，其中n 表示报名参加笔试的选手总数，m表示计划录取的志愿者人数。输入数据保证m×150%<strong>向下取整</strong>后小于等于n。</p>
+<p>第二行到第 n+1 行，每行包括两个整数，中间用一个空格隔开，分别是选手的报名号k（1000≤k≤9999）和该选手的笔试成绩s（1≤s≤100）。数据保证选手的报名号各不相同。</p>
+<h3 id="【输出】-7">【输出】</h3>
+<p>第一行，有两个整数，用一个空格隔开，第一个整数表示面试分数线；第二个整数为进入面试的选手的实际人数。</p>
+<p>从第二行开始，每行包含两个整数，中间用一个空格隔开，分别表示进入面试的选手的报名号和笔试成绩，按照笔试成绩从高到低输出，如果成绩相同，则按报名号由小到大的顺序输出。</p>
+<h3 id="【输入样例】-7">【输入样例】</h3>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">6 </span><span class="hljs-number">3</span> <br><span class="hljs-symbol">1000 </span><span class="hljs-number">90</span> <br><span class="hljs-symbol">3239 </span><span class="hljs-number">88</span> <br><span class="hljs-symbol">2390 </span><span class="hljs-number">95</span> <br><span class="hljs-symbol">7231 </span><span class="hljs-number">84</span> <br><span class="hljs-symbol">1005 </span><span class="hljs-number">95</span> <br><span class="hljs-symbol">1001 </span><span class="hljs-number">88</span><br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-7">【输出样例】</h3>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">88 </span><span class="hljs-number">5</span> <br><span class="hljs-symbol">1005 </span><span class="hljs-number">95</span> <br><span class="hljs-symbol">2390 </span><span class="hljs-number">95</span> <br><span class="hljs-symbol">1000 </span><span class="hljs-number">90</span> <br><span class="hljs-symbol">1001 </span><span class="hljs-number">88</span> <br><span class="hljs-symbol">3239 </span><span class="hljs-number">88</span> <br></code></pre></td></tr></table></figure>
+<h3 id="【提示】-3">【提示】</h3>
+<p>样例说明：m×150%=3×150%=4.5，向下取整后为4。保证4个人进入面试的分数线为88，但因为88有重分，所以所有成绩大于等于88的选手都可以进入面试，故最终有5个人进入面试。</p>
+<p>使用选择排序，先找到分数线位置m-1的分数大小，后面再继续选择排序，一旦在划定分数线之后的人，判断选到最大值的人的分数是否小于分数线，如果小于退出循环，如果不小于继续找刚好是分数线的人。</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;cmath&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-type">int</span> n,m;<br>    cin&gt;&gt;n&gt;&gt;m;<br>    <span class="hljs-type">int</span> num[<span class="hljs-number">5001</span>],score[<span class="hljs-number">5001</span>];<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;<br>        cin&gt;&gt;num[i]&gt;&gt;score[i];<br>    &#125;<br>    <span class="hljs-comment">//找到分数线同学</span><br>    m = <span class="hljs-built_in">floor</span>(m*<span class="hljs-number">1.5</span>);<br>    <span class="hljs-type">int</span> sum = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;<br>        <span class="hljs-type">int</span> max = i;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=i+<span class="hljs-number">1</span>;j&lt;n;j++)&#123;<br>            <span class="hljs-keyword">if</span>(score[max] &lt; score[j])<br>                max = j;<br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(score[max]==score[j] &amp;&amp; num[max]&gt;num[j])<br>                max = j;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(i&gt;=m &amp;&amp; score[max]&lt;score[m<span class="hljs-number">-1</span>])<br>            <span class="hljs-keyword">break</span>;<br>        <span class="hljs-type">int</span> tmp = score[max];<br>        score[max] = score[i];<br>        score[i] = tmp;<br>        tmp = num[max];<br>        num[max] = num[i];<br>        num[i] = tmp;<br>        sum++;<br>    &#125;<br>    <span class="hljs-comment">//与分数线相同的都挑出来</span><br>    cout&lt;&lt;score[m<span class="hljs-number">-1</span>]&lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;sum&lt;&lt;endl;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;sum;i++)<br>        cout&lt;&lt;num[i]&lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;score[i]&lt;&lt;endl;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="1181：整数奇偶排序">1181：整数奇偶排序</h2>
+<h3 id="【题目描述】-8">【题目描述】</h3>
+<p>给定10个整数的序列，要求对其重新排序。排序要求:</p>
+<p>1.奇数在前，偶数在后；</p>
+<p>2.奇数按从大到小排序；</p>
+<p>3.偶数按从小到大排序。</p>
+<h3 id="【输入】-8">【输入】</h3>
+<p>输入一行，包含10个整数，彼此以一个空格分开，每个整数的范围是大于等于0，小于等于30000。</p>
+<h3 id="【输出】-8">【输出】</h3>
+<p>按照要求排序后输出一行，包含排序后的10个整数，数与数之间以一个空格分开。</p>
+<h3 id="【输入样例】-8">【输入样例】</h3>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">4 </span><span class="hljs-number">7</span> <span class="hljs-number">3</span> <span class="hljs-number">13</span> <span class="hljs-number">11</span> <span class="hljs-number">12</span> <span class="hljs-number">0</span> <span class="hljs-number">47</span> <span class="hljs-number">34</span> <span class="hljs-number">98</span><br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-8">【输出样例】</h3>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">47 </span><span class="hljs-number">13</span> <span class="hljs-number">11</span> <span class="hljs-number">7</span> <span class="hljs-number">3</span> <span class="hljs-number">0</span> <span class="hljs-number">4</span> <span class="hljs-number">12</span> <span class="hljs-number">34</span> <span class="hljs-number">98</span><br></code></pre></td></tr></table></figure>
+<p>将奇数设为0偶数设为最大30001，因为奇数从大到小排列，偶数从小到大排列，循环遍历10个数，找到偶数时先找到他应该插到哪个位置，将待插入部分之后右移，将该数插入，偶数项数量增加。奇数项同理</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-meta">#include&lt;iostream&gt;</span><br><span class="hljs-meta">#include&lt;cmath&gt;</span><br><span class="hljs-keyword">using</span> namespace std;<br><span class="hljs-type">int</span> main()&#123;<br>    <span class="hljs-type">int</span> num[<span class="hljs-number">11</span>],odd[<span class="hljs-number">10</span>]=&#123;<span class="hljs-number">0</span>&#125;,even[<span class="hljs-number">10</span>]=&#123;<span class="hljs-number">30001</span>&#125;;<br>    <span class="hljs-type">int</span> len_odd=<span class="hljs-number">0</span>,len_even=<span class="hljs-number">0</span>,k=<span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">while</span>(cin&gt;&gt;num[k++])&#123;<br>        <span class="hljs-keyword">if</span>(cin.<span class="hljs-keyword">get</span>()==<span class="hljs-string">&#x27;\n&#x27;</span>)<br>            break;                    <br>    &#125;<br><br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">10</span>;i++)&#123;<br>        <span class="hljs-keyword">if</span>(num[i]%<span class="hljs-number">2</span>==<span class="hljs-number">0</span>)&#123;<br>            <span class="hljs-type">int</span> <span class="hljs-keyword">index</span>=<span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;len_even;j++)&#123;<br>                <span class="hljs-keyword">if</span>(num[i]&lt;even[j])&#123;<br>                    <span class="hljs-keyword">index</span> = j;<br>                    break;<br>                &#125;<br>                <span class="hljs-keyword">else</span>    <br>                    <span class="hljs-keyword">index</span>++;<br>            &#125;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=len_even<span class="hljs-number">-1</span>;j&gt;=<span class="hljs-keyword">index</span>;j<span class="hljs-comment">--)</span><br>                even[j+<span class="hljs-number">1</span>] = even[j];<br>            even[<span class="hljs-keyword">index</span>] = num[i];<br>            len_even++;<br>        &#125;<br>        <span class="hljs-keyword">else</span>&#123;<br>            <span class="hljs-type">int</span> <span class="hljs-keyword">index</span>=<span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;len_odd;j++)&#123;<br>                <span class="hljs-keyword">if</span>(num[i]&gt;odd[j])&#123;<br>                    <span class="hljs-keyword">index</span> = j;<br>                    break;<br>                &#125;<br>                <span class="hljs-keyword">else</span>  <br>                    <span class="hljs-keyword">index</span>++;<br>            &#125;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=len_odd<span class="hljs-number">-1</span>;j&gt;=<span class="hljs-keyword">index</span>;j<span class="hljs-comment">--)</span><br>                odd[j+<span class="hljs-number">1</span>] = odd[j];<br>            odd[<span class="hljs-keyword">index</span>] = num[i];<br>            len_odd++;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;len_odd;i++)<br>        cout&lt;&lt;odd[i]&lt;&lt;&quot; &quot;;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;len_even;i++)<br>        cout&lt;&lt;even[i]&lt;&lt;&quot; &quot;;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="1182：合影效果">1182：合影效果</h2>
+<h3 id="【题目描述】-9">【题目描述】</h3>
+<p>小云和朋友们去爬香山，为美丽的景色所陶醉，想合影留念。如果他们站成一排，男生全部在左（从拍照者的角度），并按照从矮到高的顺序从左到右排，女生全部在右，并按照从高到矮的顺序从左到右排，请问他们合影的效果是什么样的（所有人的身高都不同）？</p>
+<h3 id="【输入】-9">【输入】</h3>
+<p>第一行是人数n𝑛（2≤n≤40，且至少有1个男生和1个女生）。</p>
+<p>后面紧跟n行，每行输入一个人的性别（男<code>male</code>或女<code>female</code>）和身高（浮点数，单位米），两个数据之间以空格分隔。</p>
+<h3 id="【输出】-9">【输出】</h3>
+<p>n个浮点数，模拟站好队后，拍照者眼中从左到右每个人的身高。每个浮点数需保留到小数点后2位，相邻两个数之间用单个空格隔开。</p>
+<h3 id="【输入样例】-9">【输入样例】</h3>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">6</span> <br><span class="hljs-attribute">male</span> <span class="hljs-number">1</span>.<span class="hljs-number">72</span> <br><span class="hljs-attribute">male</span> <span class="hljs-number">1</span>.<span class="hljs-number">78</span> <br><span class="hljs-attribute">female</span> <span class="hljs-number">1</span>.<span class="hljs-number">61</span> <br><span class="hljs-attribute">male</span> <span class="hljs-number">1</span>.<span class="hljs-number">65</span> <br><span class="hljs-attribute">female</span> <span class="hljs-number">1</span>.<span class="hljs-number">70</span> <br><span class="hljs-attribute">female</span> <span class="hljs-number">1</span>.<span class="hljs-number">56</span><br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-9">【输出样例】</h3>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">1</span>.<span class="hljs-number">65</span> <span class="hljs-number">1</span>.<span class="hljs-number">72</span> <span class="hljs-number">1</span>.<span class="hljs-number">78</span> <span class="hljs-number">1</span>.<span class="hljs-number">70</span> <span class="hljs-number">1</span>.<span class="hljs-number">61</span> <span class="hljs-number">1</span>.<span class="hljs-number">56</span><br></code></pre></td></tr></table></figure>
+<p>与奇偶数类似，判断性别分别进行插入排序</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;cmath&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-type">int</span> n,len_male=<span class="hljs-number">0</span>,len_female=<span class="hljs-number">0</span>;<br>    string gender[<span class="hljs-number">41</span>];<br>    <span class="hljs-type">double</span> male[<span class="hljs-number">41</span>]=&#123;<span class="hljs-number">3.0</span>&#125;,female[<span class="hljs-number">41</span>]=&#123;<span class="hljs-number">0.0</span>&#125;,height[<span class="hljs-number">41</span>];<br>    cin&gt;&gt;n;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)<br>        cin&gt;&gt;gender[i]&gt;&gt;height[i];<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;<br>        <span class="hljs-keyword">if</span>(gender[i]==<span class="hljs-string">&quot;male&quot;</span>)&#123;<br>            <span class="hljs-type">int</span> index=<span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;len_male;j++)&#123;<br>                <span class="hljs-keyword">if</span>(height[i]&lt;male[j])&#123;<br>                    index = j;<br>                    <span class="hljs-keyword">break</span>;<br>                &#125;<br>                <span class="hljs-keyword">else</span>    <br>                    index++;<br>            &#125;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=len_male<span class="hljs-number">-1</span>;j&gt;=index;j--)<br>                male[j+<span class="hljs-number">1</span>] = male[j];<br>            male[index] = height[i];<br>            len_male++;<br>        &#125;<br>        <span class="hljs-keyword">else</span>&#123;<br>            <span class="hljs-type">int</span> index=<span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;len_female;j++)&#123;<br>                <span class="hljs-keyword">if</span>(height[i]&gt;female[j])&#123;<br>                    index = j;<br>                    <span class="hljs-keyword">break</span>;<br>                &#125;<br>                <span class="hljs-keyword">else</span>  <br>                    index++;<br>            &#125;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=len_female<span class="hljs-number">-1</span>;j&gt;=index;j--)<br>                female[j+<span class="hljs-number">1</span>] = female[j];<br>            female[index] = height[i];<br>            len_female++;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;len_male;i++)<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%.2f%c&quot;</span>,male[i],<span class="hljs-string">&#x27; &#x27;</span>);<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;len_female;i++)<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%.2f%c&quot;</span>,female[i],<span class="hljs-string">&#x27; &#x27;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="1183：病人排队">1183：病人排队</h2>
+<h3 id="【题目描述】-10">【题目描述】</h3>
+<p>病人登记看病，编写一个程序，将登记的病人按照以下原则排出看病的先后顺序：</p>
+<p>1.老年人（年龄 ≥60岁）比非老年人优先看病。</p>
+<p>2.老年人按年龄从大到小的顺序看病，年龄相同的按登记的先后顺序排序。</p>
+<p>3.非老年人按登记的先后顺序看病。</p>
+<h3 id="【输入】-10">【输入】</h3>
+<p>第1行，输入一个小于100的正整数，表示病人的个数；</p>
+<p>后面按照病人登记的先后顺序，每行输入一个病人的信息，包括：一个长度小于10的字符串表示病人的ID（每个病人的ID各不相同且只含数字和字母），一个整数表示病人的年龄，中间用单个空格隔开。</p>
+<h3 id="【输出】-10">【输出】</h3>
+<p>按排好的看病顺序输出病人的ID，每行一个。</p>
+<h3 id="【输入样例】-10">【输入样例】</h3>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">5 </span><br><span class="hljs-symbol">021075 </span><span class="hljs-number">40</span> <br><span class="hljs-symbol">004003 </span><span class="hljs-number">15</span> <br><span class="hljs-symbol">010158 </span><span class="hljs-number">67</span> <br><span class="hljs-symbol">021033 </span><span class="hljs-number">75</span> <br><span class="hljs-symbol">102012 </span><span class="hljs-number">30</span><br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-10">【输出样例】</h3>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">021033 </span><br><span class="hljs-symbol">010158 </span><br><span class="hljs-symbol">021075 </span><br><span class="hljs-symbol">004003 </span><br><span class="hljs-number">102012</span><br></code></pre></td></tr></table></figure>
+<p>使用插入排序，对年龄进行判断，是老年人从大到小排序，对非老年人直接加入序列中</p>
+<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs excel">#include&lt;iostream&gt;<br>using namespace std;<br><span class="hljs-built_in">int</span> main()&#123;<br>    <span class="hljs-built_in">int</span> <span class="hljs-built_in">n</span>,age[<span class="hljs-number">100</span>],sort_age[<span class="hljs-number">100</span>]=&#123;<span class="hljs-number">200</span>&#125;,<span class="hljs-built_in">len</span>=<span class="hljs-number">0</span>;<br>    string num[<span class="hljs-number">100</span>],sort_num[<span class="hljs-number">100</span>]=&#123;<span class="hljs-string">&quot;0&quot;</span>&#125;;<br>    cin&gt;&gt;<span class="hljs-built_in">n</span>;<br>    for(<span class="hljs-built_in">int</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-built_in">n</span>;i++)<br>        cin&gt;&gt;num[i]&gt;&gt;age[i];<br>    for(<span class="hljs-built_in">int</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-built_in">n</span>;i++)&#123;<br>        <span class="hljs-built_in">if</span>(age[i]&gt;=<span class="hljs-number">60</span>)&#123;<br>            <span class="hljs-built_in">int</span> <span class="hljs-built_in">index</span>=<span class="hljs-number">0</span>;<br>            for(<span class="hljs-built_in">int</span> j=<span class="hljs-number">0</span>;j&lt;<span class="hljs-built_in">len</span>;j++)&#123;<br>                <span class="hljs-built_in">if</span>(age[i]&gt;sort_age[j])&#123;<br>                    <span class="hljs-built_in">index</span> = j;<br>                    break;<br>                &#125;<br>                else    <br>                    <span class="hljs-built_in">index</span>++;<br>            &#125;<br>            for(<span class="hljs-built_in">int</span> j=<span class="hljs-built_in">len</span>-<span class="hljs-number">1</span>;j&gt;=<span class="hljs-built_in">index</span>;j--)<br>                sort_age[j+<span class="hljs-number">1</span>] = sort_age[j];<br>            sort_age[<span class="hljs-built_in">index</span>] = age[i];<br><br>            for(<span class="hljs-built_in">int</span> j=<span class="hljs-built_in">len</span>-<span class="hljs-number">1</span>;j&gt;=<span class="hljs-built_in">index</span>;j--)<br>                sort_num[j+<span class="hljs-number">1</span>] = sort_num[j];<br>            sort_num[<span class="hljs-built_in">index</span>] = num[i];        <br>            <span class="hljs-built_in">len</span>++;<br>        &#125;<br>        else&#123;<br>            sort_age[<span class="hljs-built_in">len</span>] = age[i];<br>            sort_num[<span class="hljs-built_in">len</span>] = num[i];<br>            <span class="hljs-built_in">len</span>++;<br>        &#125;<br>    &#125;<br>    for(<span class="hljs-built_in">int</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-built_in">len</span>;i++)<br>        cout&lt;&lt;sort_num[i]&lt;&lt;endl;<br>	return <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="1184：明明的随机数">1184：明明的随机数</h2>
+<h3 id="【题目描述】-11">【题目描述】</h3>
+<p>明明想在学校中请一些同学一起做一项问卷调查，为了实验的客观性，他先用计算机生成了N个1到1000之间的随机整数（N≤100），对于其中重复的数字，只保留一个，把其余相同的数去掉，不同的数对应着不同的学生的学号。然后再把这些数从小到大排序，按照排好的顺序去找同学做调查。请你协助明明完成“去重”与“排序”的工作。</p>
+<h3 id="【输入】-11">【输入】</h3>
+<p>有2行，第1行为1个正整数，表示所生成的随机数的个数：N；</p>
+<p>第2行有N个用空格隔开的正整数，为所产生的随机数。</p>
+<h3 id="【输出】-11">【输出】</h3>
+<p>也是2行，第1行为1个正整数M，表示不相同的随机数的个数。第2行为M个用空格隔开的正整数，为从小到大排好序的不相同的随机数。</p>
+<h3 id="【输入样例】-11">【输入样例】</h3>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">10 </span><br><span class="hljs-symbol">20 </span><span class="hljs-number">40</span> <span class="hljs-number">32</span> <span class="hljs-number">67</span> <span class="hljs-number">40</span> <span class="hljs-number">20</span> <span class="hljs-number">89</span> <span class="hljs-number">300</span> <span class="hljs-number">400</span> <span class="hljs-number">15</span><br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-11">【输出样例】</h3>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">8 </span><br><span class="hljs-symbol">15 </span><span class="hljs-number">20</span> <span class="hljs-number">32</span> <span class="hljs-number">40</span> <span class="hljs-number">67</span> <span class="hljs-number">89</span> <span class="hljs-number">300</span> <span class="hljs-number">400</span><br></code></pre></td></tr></table></figure>
+<p>去重：从左到右依次遍历，有相同的数将其置为0，下次就不会再找到他了。</p>
+<p>排序：选择排序</p>
+<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs excel">#include&lt;iostream&gt;<br>using namespace std;<br><span class="hljs-built_in">int</span> main()&#123;<br>    <span class="hljs-built_in">int</span> <span class="hljs-built_in">n</span>,num[<span class="hljs-number">101</span>],num_n[<span class="hljs-number">101</span>],<span class="hljs-built_in">len</span>=<span class="hljs-number">0</span>;<br>    cin&gt;&gt;<span class="hljs-built_in">n</span>;<br>    for(<span class="hljs-built_in">int</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-built_in">n</span>;i++)<br>        cin&gt;&gt;num[i];<br>    for(<span class="hljs-built_in">int</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-built_in">n</span>;i++)&#123;<br>        <span class="hljs-built_in">if</span>(num[i]==<span class="hljs-number">0</span>)<br>            continue;<br>        for(<span class="hljs-built_in">int</span> j=i+<span class="hljs-number">1</span>;j&lt;<span class="hljs-built_in">n</span>;j++)&#123;<br>            <span class="hljs-built_in">if</span>(num[i] == num[j])&#123;<br>                num[j] = <span class="hljs-number">0</span>;<br>            &#125;<br>        &#125;<br>        num_n[<span class="hljs-built_in">len</span>++] = num[i];<br>    &#125;<br><br>    for(<span class="hljs-built_in">int</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-built_in">len</span>;i++)&#123;<br>        <span class="hljs-built_in">int</span> <span class="hljs-built_in">min</span> = i;<br>        for(<span class="hljs-built_in">int</span> j=i+<span class="hljs-number">1</span>;j&lt;<span class="hljs-built_in">len</span>;j++)&#123;<br>            <span class="hljs-built_in">if</span>(num_n[<span class="hljs-built_in">min</span>] &gt; num_n[j])<br>                <span class="hljs-built_in">min</span> = j;<br>        &#125;<br>        <span class="hljs-built_in">int</span> tmp = num_n[<span class="hljs-built_in">min</span>];<br>        num_n[<span class="hljs-built_in">min</span>] = num_n[i];<br>        num_n[i] = tmp;<br>    &#125;<br>    cout&lt;&lt;<span class="hljs-built_in">len</span>&lt;&lt;endl;<br>    for(<span class="hljs-built_in">int</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-built_in">len</span>;i++)<br>        cout&lt;&lt;num_n[i]&lt;&lt;<span class="hljs-string">&quot; &quot;</span>;<br>	return <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="1185：单词排序">1185：单词排序</h2>
+<h3 id="【题目描述】-12">【题目描述】</h3>
+<p>输入一行单词序列，相邻单词之间由1个或多个空格间隔，请按照字典序输出这些单词，要求重复的单词只输出一次。（区分大小写）</p>
+<h3 id="【输入】-12">【输入】</h3>
+<p>一行单词序列，最少1个单词，最多100个单词，每个单词长度不超过50，单词之间用至少1个空格间隔。数据不含除字母、空格外的其他字符。</p>
+<h3 id="【输出】-12">【输出】</h3>
+<p>按字典序输出这些单词，重复的单词只输出一次。</p>
+<h3 id="【输入样例】-12">【输入样例】</h3>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim">She  wants  <span class="hljs-keyword">to</span> <span class="hljs-keyword">go</span> <span class="hljs-keyword">to</span> Peking University <span class="hljs-keyword">to</span> study  Chinese<br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-12">【输出样例】</h3>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs vim">Chinese <br>Peking <br>She <br>University <br><span class="hljs-keyword">go</span> <br>study <br><span class="hljs-keyword">to</span> <br>wants<br></code></pre></td></tr></table></figure>
+<p>去重加选择排序</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-meta">#<span class="hljs-keyword">define</span> N 105</span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	string s[N];<br>	<span class="hljs-type">int</span> n = <span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">while</span>(cin &gt;&gt; s[n])<br>        n++;<br>    n--;<span class="hljs-comment">//最后一次输入的值是EOF，不是有效的值，n应该减1 </span><br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n<span class="hljs-number">-1</span>; ++i)<span class="hljs-comment">//选择排序 </span><br>	   <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = i+<span class="hljs-number">1</span>; j &lt;= n; ++j)<br>	       <span class="hljs-keyword">if</span>(s[j] &lt; s[i])<br>	           <span class="hljs-built_in">swap</span>(s[j], s[i]);<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; n; ++i)<br>	    <span class="hljs-keyword">if</span>(s[i] != s[i+<span class="hljs-number">1</span>])<br>            cout &lt;&lt; s[i] &lt;&lt; endl;<br>    cout &lt;&lt; s[n] &lt;&lt; endl; <br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>排序部分有点问题</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-type">int</span> len=<span class="hljs-number">0</span>,len_n=<span class="hljs-number">0</span>;<br>    string num[<span class="hljs-number">101</span>],num_n[<span class="hljs-number">101</span>],s;<br>    <span class="hljs-keyword">while</span>(cin&gt;&gt;num[len++])&#123;<br>        <span class="hljs-keyword">if</span>(cin.<span class="hljs-built_in">get</span>()==<span class="hljs-string">&#x27;\n&#x27;</span>)<br>            <span class="hljs-keyword">break</span>;<br>    &#125;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;len;i++)&#123;<br>        <span class="hljs-keyword">if</span>(num[i]==<span class="hljs-string">&quot;0&quot;</span>)<br>            <span class="hljs-keyword">continue</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=i+<span class="hljs-number">1</span>;j&lt;len;j++)&#123;<br>            <span class="hljs-keyword">if</span>(num[i] == num[j])&#123;<br>                num[j] = <span class="hljs-string">&quot;0&quot;</span>;<br>            &#125;<br>        &#125;<br>        num_n[len_n++] = num[i];<br>    &#125;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;len_n;i++)&#123;<br>        <span class="hljs-type">int</span> min = i;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=i+<span class="hljs-number">1</span>;j&lt;len_n;j++)&#123;<br>            <span class="hljs-keyword">if</span>(num_n[min] &gt; num_n[j])<br>                min = j;<br>        &#125;<br>        string tmp = num_n[min];<br>        num_n[min] = num_n[i];<br>        num_n[i] = tmp;<br>    &#125;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;len_n;i++)<br>        cout&lt;&lt;num_n[i]&lt;&lt;endl;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="1186：出现次数超过一半的数">1186：出现次数超过一半的数</h2>
+<h3 id="【题目描述】-13">【题目描述】</h3>
+<p>给出一个含有n（0 &lt; n &lt;= 1000）个整数的数组，请找出其中出现次数超过一半的数。数组中的数大于-50且小于50。</p>
+<h3 id="【输入】-13">【输入】</h3>
+<p>第一行包含一个整数n，表示数组大小；</p>
+<p>第二行包含n个整数，分别是数组中的每个元素，相邻两个元素之间用单个空格隔开。</p>
+<h3 id="【输出】-13">【输出】</h3>
+<p>如果存在这样的数，输出这个数；否则输出no。</p>
+<h3 id="【输入样例】-13">【输入样例】</h3>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">3 </span><br><span class="hljs-symbol">1 </span><span class="hljs-number">2</span> <span class="hljs-number">2</span><br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-13">【输出样例】</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">2<br></code></pre></td></tr></table></figure>
+<p>先进行选择排序，按照顺序从小到大依次寻找相同的数，从1开始计数，找到不相等的数下一次从这个不相等 的数开始找。中间判断相同的数是否大于一半的值。</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;string&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-type">int</span> n,num[<span class="hljs-number">1001</span>];<br>    cin&gt;&gt;n;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)    <br>        cin&gt;&gt;num[i];<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;<br>        <span class="hljs-type">int</span> min = i;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=i+<span class="hljs-number">1</span>;j&lt;n;j++)&#123;<br>            <span class="hljs-keyword">if</span>(num[j] &lt; num[min])<br>                min = j;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(min != i)<br>            <span class="hljs-built_in">swap</span>(num[i],num[min]);<br>    &#125;<br>    <span class="hljs-type">int</span> max = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;n;)&#123;<br>        max = <span class="hljs-number">1</span>;<br>        <span class="hljs-type">int</span> j=i+<span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">for</span>(;j&lt;n;j++)&#123;<br>            <span class="hljs-keyword">if</span>(max&gt;n/<span class="hljs-number">2</span>)&#123;<br>                cout&lt;&lt;num[i];<br>                <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>            &#125;<br>            <span class="hljs-keyword">if</span>(num[j] == num[i])<br>                max++;<br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(num[j] != num[i])<br>                <span class="hljs-keyword">break</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(max&gt;n/<span class="hljs-number">2</span>)&#123;<br>            cout&lt;&lt;num[i];<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        &#125;<br>        i = j;<br>    &#125;<br>    cout&lt;&lt;<span class="hljs-string">&quot;no&quot;</span>;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="1187：统计字符数">1187：统计字符数</h2>
+<h3 id="【题目描述】-14">【题目描述】</h3>
+<p>给定一个由a-z这26个字符组成的字符串，统计其中哪个字符出现的次数最多。</p>
+<h3 id="【输入】-14">【输入】</h3>
+<p>输入包含一行，一个字符串，长度不超过1000。</p>
+<h3 id="【输出】-14">【输出】</h3>
+<p>输出一行，包括出现次数最多的字符和该字符出现的次数，中间以一个空格分开。如果有多个字符出现的次数相同且最多，那么输出ascii码最小的那一个字符。</p>
+<h3 id="【输入样例】-14">【输入样例】</h3>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">abbccc</span><br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-14">【输出样例】</h3>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">c</span> <span class="hljs-number">3</span><br></code></pre></td></tr></table></figure>
+<p>先排序，然后找数量</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;string&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    string s;<br>    cin&gt;&gt;s;<br>    <span class="hljs-type">int</span> n = s.<span class="hljs-built_in">length</span>();<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;<br>        <span class="hljs-type">int</span> min = i;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=i+<span class="hljs-number">1</span>;j&lt;n;j++)&#123;<br>            <span class="hljs-keyword">if</span>(s[j] &lt; s[min])<br>                min = j;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(min != i)<br>            <span class="hljs-built_in">swap</span>(s[i],s[min]);<br>    &#125;<br>    <span class="hljs-type">int</span> max = <span class="hljs-number">1</span>;<br>    <span class="hljs-type">char</span> max_s = s[<span class="hljs-number">0</span>];<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;n;)&#123;<br>        <span class="hljs-type">int</span> cur_max = <span class="hljs-number">1</span>;<br>        <span class="hljs-type">int</span> j=i+<span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">for</span>(;j&lt;n;j++)&#123;<br>            <span class="hljs-keyword">if</span>(s[j] == s[i])<br>                cur_max++;<br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(s[j] != s[i])<br>                <span class="hljs-keyword">break</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(cur_max&gt;max)&#123;<br>            max = cur_max;<br>            max_s = s[i];<br>        &#125;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(cur_max==max &amp;&amp; s[i]&lt;max_s)&#123;<br>            max = cur_max;<br>            max_s = s[i];<br>        &#125; <br>        i = j;<br>    &#125;<br>    cout&lt;&lt;max_s&lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;max;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>排序算法</div>
+      <div>http://example.com/2024/06/18/排序算法/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>EricWang</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 18, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/18/%E9%80%92%E6%8E%A8%E7%AE%97%E6%B3%95/" title="递推算法">
+                        <span class="hidden-mobile">递推算法</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

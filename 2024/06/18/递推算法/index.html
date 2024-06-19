@@ -1,0 +1,822 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/davidblue.jpg">
+  <link rel="icon" href="/img/davidblue.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="EricWang">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="递推算法 1312：昆虫繁殖 【题目描述】 科学家在热带森林中发现了一种特殊的昆虫，这种昆虫的繁殖能力很强。每对成虫过x个月产y对卵，每对卵要过两个月长成成虫。假设每个成虫不死，第一个月只有一对成虫，且卵长成成虫后的第一个月不产卵(过x个月产卵)，问过z个月以后，共有成虫多少对？0≤x≤20,1≤y≤20,X≤z≤50。 【输入】 x,y,z的数值。 【输出】 过z个月以后，共有成虫对数。 【输入">
+<meta property="og:type" content="article">
+<meta property="og:title" content="递推算法">
+<meta property="og:url" content="http://example.com/2024/06/18/%E9%80%92%E6%8E%A8%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="递推算法 1312：昆虫繁殖 【题目描述】 科学家在热带森林中发现了一种特殊的昆虫，这种昆虫的繁殖能力很强。每对成虫过x个月产y对卵，每对卵要过两个月长成成虫。假设每个成虫不死，第一个月只有一对成虫，且卵长成成虫后的第一个月不产卵(过x个月产卵)，问过z个月以后，共有成虫多少对？0≤x≤20,1≤y≤20,X≤z≤50。 【输入】 x,y,z的数值。 【输出】 过z个月以后，共有成虫对数。 【输入">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://ybt.ssoier.cn:8088/pic/1314.gif">
+<meta property="article:published_time" content="2024-06-18T07:48:17.000Z">
+<meta property="article:modified_time" content="2024-06-18T02:56:14.903Z">
+<meta property="article:author" content="EricWang">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://ybt.ssoier.cn:8088/pic/1314.gif">
+  
+  
+  
+  <title>递推算法 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>EricWang</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/gulingjie1.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="递推算法"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        EricWang
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-18 15:48" pubdate>
+          June 18, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.4k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          37 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">递推算法</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1>递推算法</h1>
+<h2 id="1312：昆虫繁殖">1312：昆虫繁殖</h2>
+<h3 id="【题目描述】">【题目描述】</h3>
+<p>科学家在热带森林中发现了一种特殊的昆虫，这种昆虫的繁殖能力很强。每对成虫过x个月产y对卵，每对卵要过两个月长成成虫。假设每个成虫不死，第一个月只有一对成虫，且卵长成成虫后的第一个月不产卵(过x个月产卵)，问过z个月以后，共有成虫多少对？0≤x≤20,1≤y≤20,X≤z≤50。</p>
+<h3 id="【输入】">【输入】</h3>
+<p>x,y,z的数值。</p>
+<h3 id="【输出】">【输出】</h3>
+<p>过z个月以后，共有成虫对数。</p>
+<h3 id="【输入样例】">【输入样例】</h3>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">1 </span><span class="hljs-number">2</span> <span class="hljs-number">8</span><br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】">【输出样例】</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">37<br></code></pre></td></tr></table></figure>
+<p>将昆虫分为3种状态，第一种是能产卵的成虫，第二种是卵，第三种是不能产卵的成虫。设第i月<strong>虫（包含成虫和不能产卵的成虫）<strong>数量的数组为a[i]，第i月</strong>产生卵</strong>数量的数组为b[i]。</p>
+<p>虫数量根据上个月的虫数量增加a[i] = a[i-1] + b[i-2]，因为卵需要2个月才能长成虫。</p>
+<p>卵的数量不用自增加，因为每个月产生的卵的数量之间没有太大关系，第i月产生的卵是i-x月虫的数量产生的卵，因为经过x个月之后不能产卵的成虫也可以产卵了，所以第i月能产卵的虫数量就是i-x月虫的数量。</p>
+<p>参考：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/lq1990717/article/details/123785607?ops_request_misc=%7B%22request%5Fid%22%3A%22171757392416800184129843%22%2C%22scm%22%3A%2220140713.130102334..%22%7D&amp;request_id=171757392416800184129843&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-1-123785607-null-null.142%5Ev100%5Epc_search_result_base1&amp;utm_term=1312%EF%BC%9A%E3%80%90%E4%BE%8B3.4%E3%80%91%E6%98%86%E8%99%AB%E7%B9%81%E6%AE%96&amp;spm=1018.2226.3001.4187">信息学奥赛一本通 1312：【例3.4】昆虫繁殖_1312:【例3.4】昆虫繁殖-CSDN博客</a></p>
+<p>注意题目说z小于等于50，但是实际上会更大。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-type">int</span> x,y,z;<br>    cin&gt;&gt;x&gt;&gt;y&gt;&gt;z;<br>    <span class="hljs-type">long</span> <span class="hljs-type">long</span> a[<span class="hljs-number">101</span>],b[<span class="hljs-number">101</span>];<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;=x;i++)&#123;<br>        a[i] = <span class="hljs-number">1</span>;<br>        b[i] = <span class="hljs-number">0</span>;<br>    &#125;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=x+<span class="hljs-number">1</span>;i&lt;=z+<span class="hljs-number">1</span>;i++)&#123;<br>        b[i] = a[i-x]*y;<br>        a[i] = a[i<span class="hljs-number">-1</span>] + b[i<span class="hljs-number">-2</span>];<br>    &#125;<br>    cout&lt;&lt;a[z+<span class="hljs-number">1</span>];<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="1313：位数问题">1313：位数问题</h2>
+<h3 id="【题目描述】-2">【题目描述】</h3>
+<p>在所有的N位数中，有多少个数中有偶数个数字3?由于结果可能很大，你只需要输出这个答案对12345取余的值。</p>
+<h3 id="【输入】-2">【输入】</h3>
+<p>读入一个数N(N≤1000)。</p>
+<h3 id="【输出】-2">【输出】</h3>
+<p>输出有多少个数中有偶数个数字3。</p>
+<h3 id="【输入样例】-2">【输入样例】</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">2<br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-2">【输出样例】</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">73<br></code></pre></td></tr></table></figure>
+<p>用排列组合的思想，</p>
+<p>一位数有偶数个3的情况就是012 456789；奇数个3的情况是3。</p>
+<p>二位数有偶数个的情况是一位数有偶数的情况在二位数上也取偶数个3，即012 456789对上012 456789=81，还包括一位数有奇数个3的情况加上二位数也有奇数个3的情况，即3对上3；奇数个3的情况则是一位数上是奇数个3对上二位数上是偶数个3，即3对上012 456789，还包括一位数上是偶数个3，二位数上是奇数个3，即012 456789对上3。</p>
+<p>于是可以总结规律，假设a[i]表示i位数偶数个3的个数，b[i]表示i位数奇数个3的个数。</p>
+<p>i+1位数的偶数个3的个数就是a[i+1]=a[i]*9+b[i]，b[i+1]=b[i]*9+a[i]</p>
+<p>当计算的是最大位的数量时，乘8而不是乘9，因为最大值位置不能取0。</p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs prolog">#include&lt;iostream&gt;<br>using namespace std;<br>int main()&#123;<br>    int n;<br>    cin&gt;&gt;n;<br>    int a[<span class="hljs-number">1002</span>],b[<span class="hljs-number">1002</span>],x=<span class="hljs-number">9</span>,<span class="hljs-symbol">M</span>=<span class="hljs-number">12345</span>;<br>    a[<span class="hljs-number">1</span>] = <span class="hljs-number">9</span>;<br>    b[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;<br>    for(int i=<span class="hljs-number">2</span>;i&lt;=n;i++)&#123;<br>        if(i==n)<br>            x--;<br>        a[i] = (a[i<span class="hljs-number">-1</span>]*x+b[i<span class="hljs-number">-1</span>])<span class="hljs-comment">%M;</span><br>        b[i] = (b[i<span class="hljs-number">-1</span>]*x+a[i<span class="hljs-number">-1</span>])<span class="hljs-comment">%M;</span><br>    &#125;<br>    cout&lt;&lt;a[n];<br>	return <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="1314：过河卒">1314：过河卒</h2>
+<h3 id="【题目描述】-3">【题目描述】</h3>
+<p>棋盘上A点有一个过河卒，需要走到目标B点。卒行走的规则：可以向下、或者向右。同时在棋盘上的某一点有一个对方的马（如C点），该马所在的点和所有跳跃一步可达的点称为对方马的控制点，如图3-1中的C点和P1，……，P8，卒不能通过对方马的控制点。棋盘用坐标表示，A点(0,0)、B点(n, m) (n,m为不超过20的整数),同样马的位置坐标是需要给出的，C≠A且C≠B。现在要求你计算出卒从A点能够到达B点的路径的条数。</p>
+<p><img src="http://ybt.ssoier.cn:8088/pic/1314.gif" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="【输入】-3">【输入】</h3>
+<p>给出n、m和C点的坐标。</p>
+<h3 id="【输出】-3">【输出】</h3>
+<p>从A点能够到达B点的路径的条数。</p>
+<h3 id="【输入样例】-3">【输入样例】</h3>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">8 </span><span class="hljs-number">6</span> <span class="hljs-number">0</span> <span class="hljs-number">4</span><br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-3">【输出样例】</h3>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-number">1617</span><br></code></pre></td></tr></table></figure>
+<p>棋盘中的点(i,j)，是由(i-1,j)和(i,j-1)坐标来的，在边缘的点（i=0或j=0）只能从其上一个位置来。而被马控制的点则可以直接置为0，表示没有任何一条路可以从这里走过。</p>
+<p>设置马的控制点时需要判断控制点是否在棋盘中，</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs inform7">#include&lt;iostream&gt;<br>#include&lt;cstring&gt;<br>using namespace std;<br>int main()&#123;<br>    int n,m,cx,cy;<br>    cin&gt;&gt;n&gt;&gt;m&gt;&gt;cx&gt;&gt;cy;<br>    long long dp<span class="hljs-comment">[25]</span><span class="hljs-comment">[25]</span>;<br>    int direction<span class="hljs-comment">[8]</span><span class="hljs-comment">[2]</span>=&#123;&#123;2,1&#125;,&#123;1,2&#125;,&#123;-1,2&#125;,&#123;-2,1&#125;,&#123;-2,-1&#125;,&#123;-1,-2&#125;,&#123;1,-2&#125;,&#123;2,-1&#125;&#125;;<br>    memset(dp,-1,sizeof(dp));<br>    dp<span class="hljs-comment">[cx]</span><span class="hljs-comment">[cy]</span> = 0;<br>    for(int i=0;i&lt;8;i++)&#123;<br>        int x = cx + direction<span class="hljs-comment">[i]</span><span class="hljs-comment">[0]</span>;<br>        int y = cy + direction<span class="hljs-comment">[i]</span><span class="hljs-comment">[1]</span>;<br>        if(x&gt;=0 &amp;&amp; x&lt;=n &amp;&amp; y&gt;=0 &amp;&amp; y&lt;=m)<br>            dp<span class="hljs-comment">[x]</span><span class="hljs-comment">[y]</span> = 0;<br>    &#125; <br>    dp<span class="hljs-comment">[0]</span><span class="hljs-comment">[0]</span> = 1;<br>    for(int i=0;i&lt;=n;i++)&#123;<br>        for(int j=0;j&lt;=m;j++)&#123;<br>            if(dp<span class="hljs-comment">[i]</span><span class="hljs-comment">[j]</span>==0)<br>                continue;<br>            else if(i==0 &amp;&amp; j==0)<br>                dp<span class="hljs-comment">[i]</span><span class="hljs-comment">[j]</span> = 1;<br>            else if(i==0 &amp;&amp; j&gt;0)<br>                dp<span class="hljs-comment">[i]</span><span class="hljs-comment">[j]</span> = dp<span class="hljs-comment">[i]</span><span class="hljs-comment">[j-1]</span>; <br>            else if(j==0 &amp;&amp; i&gt;0)<br>                dp<span class="hljs-comment">[i]</span><span class="hljs-comment">[j]</span> = dp<span class="hljs-comment">[i-1]</span><span class="hljs-comment">[j]</span>; <br>            else<br>                dp<span class="hljs-comment">[i]</span><span class="hljs-comment">[j]</span> = dp<span class="hljs-comment">[i]</span><span class="hljs-comment">[j-1]</span> + dp<span class="hljs-comment">[i-1]</span><span class="hljs-comment">[j]</span>; <br>        &#125;<br>    &#125;<br>    cout&lt;&lt;dp<span class="hljs-comment">[n]</span><span class="hljs-comment">[m]</span>;<br>	return 0;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="1188：菲波那契数列-2">1188：菲波那契数列(2)</h2>
+<h3 id="【题目描述】-4">【题目描述】</h3>
+<p>菲波那契数列是指这样的数列: 数列的第一个和第二个数都为1，接下来每个数都等于前面2个数之和。</p>
+<p>给出一个正整数a，要求菲波那契数列中第a个数对1000取模的结果是多少。</p>
+<h3 id="【输入】-4">【输入】</h3>
+<p>第1行是测试数据的组数n，后面跟着n行输入。每组测试数据占1行，包括一个正整数a(1≤a≤1000000)。</p>
+<h3 id="【输出】-4">【输出】</h3>
+<p>n行，每行输出对应一个输入。输出应是一个正整数，为菲波那契数列中第a个数对1000取模得到的结果。</p>
+<h3 id="【输入样例】-4">【输入样例】</h3>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">4 </span><br><span class="hljs-symbol">5 </span><br><span class="hljs-symbol">2 </span><br><span class="hljs-symbol">19 </span><br><span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-4">【输出样例】</h3>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">5 </span><br><span class="hljs-symbol">1 </span><br><span class="hljs-symbol">181 </span><br><span class="hljs-symbol">1 </span><br></code></pre></td></tr></table></figure>
+<p>两种思路：</p>
+<p>1.先输入每个要找到的fibonaci数，按照顺序增加fibonaci，设置当前找到的最大值，如果下一个fibonaci数小于当前最大值，直接查找，否则从最大值处开始增加，到当前数为止，并且更新最大值</p>
+<p>2.在输入数时找到最大的fibonaci数位数，然后计算到达该位置，对之前的输入进行查找</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-type">int</span> n,a[<span class="hljs-number">1000</span>];<br>    cin&gt;&gt;n;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)<br>        cin&gt;&gt;a[i];<br>    <span class="hljs-type">int</span> max = <span class="hljs-number">2</span>;<br>    <span class="hljs-type">long</span> <span class="hljs-type">long</span> fibo[<span class="hljs-number">1000005</span>];<br>    fibo[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;<br>    fibo[<span class="hljs-number">2</span>] = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;<br>        <span class="hljs-keyword">if</span>(a[i]&lt;=max)&#123;<br>            cout&lt;&lt;fibo[a[i]]&lt;&lt;endl;<br>            <span class="hljs-keyword">continue</span>;<br>        &#125;<br>            <br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=max+<span class="hljs-number">1</span>;j&lt;=a[i];j++)&#123;<br>            fibo[j] = (fibo[j<span class="hljs-number">-1</span>] + fibo[j<span class="hljs-number">-2</span>])%<span class="hljs-number">1000</span>;<br>        &#125;<br>        cout&lt;&lt;fibo[a[i]]&lt;&lt;endl;<br>        <span class="hljs-keyword">if</span>(a[i]&gt;max)<br>            max = a[i];<br>    &#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="1189：Pell数列">1189：Pell数列</h2>
+<h3 id="【题目描述】-5">【题目描述】</h3>
+<p>Pell数列<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>a</mi><mn>2</mn></msub><mo separator="true">,</mo><msub><mi>a</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">a_1,a_2,a_3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>的定义是这样的，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mn>1</mn></msub><mo>=</mo><mn>1</mn><mo separator="true">,</mo><msub><mi>a</mi><mn>2</mn></msub><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">a_1=1,a_2=2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span></p>
+<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>a</mi><mi>n</mi></msub><mo>=</mo><mn>2</mn><msub><mi>a</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>a</mi><mrow><mi>n</mi><mo>−</mo><mn>2</mn></mrow></msub><mo stretchy="false">(</mo><mi>n</mi><mo>&gt;</mo><mn>2</mn><mo stretchy="false">)</mo><mtext>。</mtext></mrow><annotation encoding="application/x-tex">a_n=2a_{n−1}+a_{n−2}(n&gt;2)。
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8528em;vertical-align:-0.2083em;"></span><span class="mord">2</span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mclose">)</span><span class="mord cjk_fallback">。</span></span></span></span></span></p>
+<p>给出一个正整数k，要求Pell数列的第k项模上32767是多少。</p>
+<h3 id="【输入】-5">【输入】</h3>
+<p>第1行是测试数据的组数n，后面跟着n行输入。每组测试数据占1行，包括一个正整数k (1≤k&lt;1000000)。</p>
+<h3 id="【输出】-5">【输出】</h3>
+<p>n行，每行输出对应一个输入。输出应是一个非负整数。</p>
+<h3 id="【输入样例】-5">【输入样例】</h3>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">2 </span><span class="hljs-number">1</span> <span class="hljs-number">8</span><br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-5">【输出样例】</h3>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">1 </span><span class="hljs-number">408</span><br></code></pre></td></tr></table></figure>
+<p>在斐波那契数列基础上改</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-type">int</span> n,a[<span class="hljs-number">1000</span>];<br>    cin&gt;&gt;n;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)<br>        cin&gt;&gt;a[i];<br>    <span class="hljs-type">int</span> max = <span class="hljs-number">2</span>;<br>    <span class="hljs-type">long</span> <span class="hljs-type">long</span> fibo[<span class="hljs-number">1000005</span>];<br>    fibo[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;<br>    fibo[<span class="hljs-number">2</span>] = <span class="hljs-number">2</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;<br>        <span class="hljs-keyword">if</span>(a[i]&lt;=max)&#123;<br>            cout&lt;&lt;fibo[a[i]]&lt;&lt;endl;<br>            <span class="hljs-keyword">continue</span>;<br>        &#125;<br>            <br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=max+<span class="hljs-number">1</span>;j&lt;=a[i];j++)&#123;<br>            fibo[j] = (<span class="hljs-number">2</span>*fibo[j<span class="hljs-number">-1</span>] + fibo[j<span class="hljs-number">-2</span>])%<span class="hljs-number">32767</span>;<br>        &#125;<br>        cout&lt;&lt;fibo[a[i]]&lt;&lt;endl;<br>        max = a[i];<br>    &#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="1190：上台阶">1190：上台阶</h2>
+<h3 id="【题目描述】-6">【题目描述】</h3>
+<p>楼梯有n(0&lt;n&lt;71)阶台阶,上楼时可以一步上1阶,也可以一步上2阶,也可以一步上3阶，编程计算共有多少种不同的走法。</p>
+<h3 id="【输入】-6">【输入】</h3>
+<p>输入的每一行包括一组测试数据，即为台阶数n。最后一行为0，表示测试结束。</p>
+<h3 id="【输出】-6">【输出】</h3>
+<p>每一行输出对应一行输入的结果，即为走法的数目。</p>
+<h3 id="【输入样例】-6">【输入样例】</h3>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">1 </span><br><span class="hljs-symbol">2 </span><br><span class="hljs-symbol">3 </span><br><span class="hljs-symbol">4 </span><br><span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-6">【输出样例】</h3>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">1 </span><br><span class="hljs-symbol">2 </span><br><span class="hljs-symbol">4 </span><br><span class="hljs-symbol">7 </span><br></code></pre></td></tr></table></figure>
+<p>dp[i]=dp[i-1]+dp[i-2]+dp[i-3]</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-type">int</span> n=<span class="hljs-number">0</span>,a[<span class="hljs-number">100</span>];<br>    <span class="hljs-keyword">while</span>(cin&gt;&gt;a[n])&#123;<br>        <span class="hljs-keyword">if</span>(a[n]==<span class="hljs-number">0</span>)<br>            <span class="hljs-keyword">break</span>;<br>        <span class="hljs-keyword">else</span>    <br>            n++;<br>    &#125;<br>    <span class="hljs-type">int</span> max = <span class="hljs-number">3</span>;<br>    <span class="hljs-type">long</span> <span class="hljs-type">long</span> dp[<span class="hljs-number">100</span>];<br>    dp[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;<br>    dp[<span class="hljs-number">2</span>] = <span class="hljs-number">2</span>;<br>    dp[<span class="hljs-number">3</span>] = <span class="hljs-number">4</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;<br>        <span class="hljs-keyword">if</span>(a[i]&lt;=max)&#123;<br>            cout&lt;&lt;dp[a[i]]&lt;&lt;endl;<br>            <span class="hljs-keyword">continue</span>;<br>        &#125;<span class="hljs-keyword">else</span>&#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=max+<span class="hljs-number">1</span>;j&lt;=a[i];j++)&#123;<br>                dp[j] = dp[j<span class="hljs-number">-1</span>] + dp[j<span class="hljs-number">-2</span>] + dp[j<span class="hljs-number">-3</span>];<br>            &#125;<br>            cout&lt;&lt;dp[a[i]]&lt;&lt;endl;<br>            max = a[i];<br>        &#125;<br>    &#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="1191：流感传染">1191：流感传染</h2>
+<h3 id="【题目描述】-7">【题目描述】</h3>
+<p>有一批易感人群住在网格状的宿舍区内，宿舍区为n*n的矩阵，每个格点为一个房间，房间里可能住人，也可能空着。在第一天，有些房间里的人得了流感，以后每天，得流感的人会使其邻居传染上流感，（已经得病的不变），空房间不会传染。请输出第m天得流感的人数。</p>
+<h3 id="【输入】-7">【输入】</h3>
+<p>第一行一个数字n，n不超过100，表示有n*n的宿舍房间。</p>
+<p>接下来的n行，每行n个字符，’.’表示第一天该房间住着健康的人，’#’表示该房间空着，’@’表示第一天该房间住着得流感的人。</p>
+<p>接下来的一行是一个整数m，m不超过100。</p>
+<h3 id="【输出】-7">【输出】</h3>
+<p>输出第m天，得流感的人数。</p>
+<h3 id="【输入样例】-7">【输入样例】</h3>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli">5 <br><span class="hljs-string">....</span><span class="hljs-comment"># </span><br>.<span class="hljs-comment">#.@. </span><br>.<span class="hljs-comment">#@.. </span><br><span class="hljs-comment">#.... </span><br><span class="hljs-string">.....</span> <br>4<br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-7">【输出样例】</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">16<br></code></pre></td></tr></table></figure>
+<p>先将所有的情况输入，在二维数组的外围一圈设置为健康，就不用判断是否超过边界了。复制上一天的数组，判断现在的数组是否是健康人，是健康人再判断健康人周围是否有病人。最后循环遍历计数。</p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs prolog">#include&lt;iostream&gt;<br>using namespace std;<br>int main()&#123;<br>    int n;<br>    cin&gt;&gt;n;<br>    char last[<span class="hljs-number">105</span>][<span class="hljs-number">105</span>],now[<span class="hljs-number">105</span>][<span class="hljs-number">105</span>];<br>    for(int i=<span class="hljs-number">0</span>;i&lt;n+<span class="hljs-number">2</span>;i++)&#123;<br>        now[i][<span class="hljs-number">0</span>] = <span class="hljs-string">&#x27;.&#x27;</span>;<br>        now[i][n+<span class="hljs-number">1</span>] = <span class="hljs-string">&#x27;.&#x27;</span>;<br>        now[<span class="hljs-number">0</span>][i] = <span class="hljs-string">&#x27;.&#x27;</span>;<br>        now[n+<span class="hljs-number">1</span>][i] = <span class="hljs-string">&#x27;.&#x27;</span>;<br>    &#125;<br>    for (int i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>    &#123;<br>        for(int j=<span class="hljs-number">1</span>;j&lt;=n;j++)&#123;<br>            cin&gt;&gt;now[i][j];<br>        &#125;<br>    &#125;<br>    int m;<br>    cin&gt;&gt;m;<br>    for(int i=<span class="hljs-number">1</span>;i&lt;m;i++)&#123;<br>        for(int j =<span class="hljs-number">1</span>;j&lt;=n;j++)<br>            for(int k=<span class="hljs-number">1</span>;k&lt;=n;k++)<br>                last[j][k] = now[j][k];<br>        for(int j=<span class="hljs-number">1</span>;j&lt;=n;j++)&#123;<br>            for(int k=<span class="hljs-number">1</span>;k&lt;=n;k++)&#123;<br>                if(now[j][k] == <span class="hljs-string">&#x27;.&#x27;</span>)&#123;<br>                    if(last[j<span class="hljs-number">-1</span>][k]==<span class="hljs-string">&#x27;@&#x27;</span> || last[j+<span class="hljs-number">1</span>][k]==<span class="hljs-string">&#x27;@&#x27;</span> || last[j][k<span class="hljs-number">-1</span>]==<span class="hljs-string">&#x27;@&#x27;</span> || last[j][k+<span class="hljs-number">1</span>]==<span class="hljs-string">&#x27;@&#x27;</span>)<br>                        now[j][k] = <span class="hljs-string">&#x27;@&#x27;</span>;<br>                &#125;<br>            &#125;<br>        &#125;<br>    &#125;<br>    int sum=<span class="hljs-number">0</span>;<br>    for(int i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>        for(int j=<span class="hljs-number">1</span>;j&lt;=n;j++)<br>            if(now[i][j]==<span class="hljs-string">&#x27;@&#x27;</span>)<br>                sum++;<br>    cout&lt;&lt;sum;<br>	return <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="1194：移动路线">1194：移动路线</h2>
+<h3 id="【题目描述】-8">【题目描述】</h3>
+<p>X桌子上有一个m行n列的方格矩阵，将每个方格用坐标表示，行坐标从下到上依次递增，列坐标从左至右依次递增，左下角方格的坐标为(1,1)，则右上角方格的坐标为(m,n)。</p>
+<p>小明是个调皮的孩子，一天他捉来一只蚂蚁，不小心把蚂蚁的右脚弄伤了，于是蚂蚁只能向上或向右移动。小明把这只蚂蚁放在左下角的方格中，蚂蚁从</p>
+<p>左下角的方格中移动到右上角的方格中，每步移动一个方格。蚂蚁始终在方格矩阵内移动，请计算出不同的移动路线的数目。</p>
+<p>对于1行1列的方格矩阵，蚂蚁原地移动，移动路线数为1；对于1行2列（或2行1列）的方格矩阵，蚂蚁只需一次向右（或向上）移动，移动路线数也为1……对于一个2行3列的方格矩阵，如下图所示：</p>
+<table>
+<thead>
+<tr>
+<th>(2,1)</th>
+<th>(2,2)</th>
+<th>(2,3)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(1,1)</td>
+<td>(1,2)</td>
+<td>(1,3)</td>
+</tr>
+</tbody>
+</table>
+<p>蚂蚁共有3种移动路线：</p>
+<p>路线1：(1,1) → (1,2) → (1,3) → (2,3)</p>
+<p>路线2：(1,1) → (1,2) → (2,2) → (2,3)</p>
+<p>路线3：(1,1) → (2,1) → (2,2) → (2,3)</p>
+<h3 id="【输入】-8">【输入】</h3>
+<p>输入只有一行，包括两个整数m和n（0 &lt; m+n ≤ 20），代表方格矩阵的行数和列数，m、n之间用空格隔开。</p>
+<h3 id="【输出】-8">【输出】</h3>
+<p>输出只有一行，为不同的移动路线的数目。</p>
+<h3 id="【输入样例】-8">【输入样例】</h3>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">2 </span><span class="hljs-number">3</span><br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-8">【输出样例】</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">3<br></code></pre></td></tr></table></figure>
+<p>与过河卒类似</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs inform7">#include&lt;iostream&gt;<br>using namespace std;<br>int main()&#123;<br>    int m,n;<br>    cin&gt;&gt;m&gt;&gt;n;<br>    long long a<span class="hljs-comment">[20]</span><span class="hljs-comment">[20]</span>;<br>    a<span class="hljs-comment">[1]</span><span class="hljs-comment">[1]</span> = 1;<br>    for(int i=1;i&lt;=m;i++)&#123;<br>        for(int j=1;j&lt;=n;j++)&#123;<br>            if(i==1 &amp;&amp; j==1)<br>                a<span class="hljs-comment">[i]</span><span class="hljs-comment">[j]</span> = 1;<br>            else if(i==1 &amp;&amp; j&gt;1)<br>                a<span class="hljs-comment">[i]</span><span class="hljs-comment">[j]</span> = a<span class="hljs-comment">[i]</span><span class="hljs-comment">[j-1]</span>;<br>            else if(j==1 &amp;&amp; i&gt;1)<br>                a<span class="hljs-comment">[i]</span><span class="hljs-comment">[j]</span> = a<span class="hljs-comment">[i-1]</span><span class="hljs-comment">[j]</span>;<br>            else<br>                a<span class="hljs-comment">[i]</span><span class="hljs-comment">[j]</span> = a<span class="hljs-comment">[i]</span><span class="hljs-comment">[j-1]</span> + a<span class="hljs-comment">[i-1]</span><span class="hljs-comment">[j]</span>;<br>        &#125;<br>    &#125;<br>    cout&lt;&lt;a<span class="hljs-comment">[m]</span><span class="hljs-comment">[n]</span>;<br>	return 0;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="1195：判断整除">1195：判断整除</h2>
+<h3 id="【题目描述】-9">【题目描述】</h3>
+<p>一个给定的正整数序列，在每个数之前都插入+号或−号后计算它们的和。比如序列：1、2、4共有8种可能的序列：</p>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs subunit">(<span class="hljs-string">+1</span>) + (<span class="hljs-string">+2</span>) + (<span class="hljs-string">+4</span>) = 7<br>(<span class="hljs-string">+1</span>) + (<span class="hljs-string">+2</span>) + (<span class="hljs-string">-4</span>) = <span class="hljs-string">-1</span><br>(<span class="hljs-string">+1</span>) + (<span class="hljs-string">-2</span>) + (<span class="hljs-string">+4</span>) = 3<br>(<span class="hljs-string">+1</span>) + (<span class="hljs-string">-2</span>) + (<span class="hljs-string">-4</span>) = <span class="hljs-string">-5</span><br>(<span class="hljs-string">-1</span>) + (<span class="hljs-string">+2</span>) + (<span class="hljs-string">+4</span>) = 5<br>(<span class="hljs-string">-1</span>) + (<span class="hljs-string">+2</span>) + (<span class="hljs-string">-4</span>) = <span class="hljs-string">-3</span><br>(<span class="hljs-string">-1</span>) + (<span class="hljs-string">-2</span>) + (<span class="hljs-string">+4</span>) = 1<br>(<span class="hljs-string">-1</span>) + (<span class="hljs-string">-2</span>) + (<span class="hljs-string">-4</span>) = <span class="hljs-string">-7</span><br></code></pre></td></tr></table></figure>
+<p>所有结果中至少有一个可被整数k整除，我们则称此正整数序列可被k整除。例如上述序列可以被3、5、7整除，而不能被2、4、6、8……整除。注意：0、−3、−6、−9……都可以认为是3的倍数。</p>
+<h3 id="【输入】-9">【输入】</h3>
+<p>输入的第一行包含两个数：N(2&lt;N&lt;10000)和k(2&lt;k&lt;100)，其中N代表一共有N个数，k代表除数。第二行给出序列中的N个整数，这些整数的取值范围都0到10000之间（可能重复）。</p>
+<h3 id="【输出】-9">【输出】</h3>
+<p>如果此正整数序列可被k整除，则输出YES，否则输出NO。（注意：都是大写字母）</p>
+<h3 id="【输入样例】-9">【输入样例】</h3>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">3 </span><span class="hljs-number">2</span> <br><span class="hljs-symbol">1 </span><span class="hljs-number">2</span> <span class="hljs-number">4</span><br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-9">【输出样例】</h3>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">NO</span><br></code></pre></td></tr></table></figure>
+<p>参考：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/lq1990717/article/details/124085240?ops_request_misc=%7B%22request%5Fid%22%3A%22171773159416800178581923%22%2C%22scm%22%3A%2220140713.130102334..%22%7D&amp;request_id=171773159416800178581923&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-1-124085240-null-null.142%5Ev100%5Epc_search_result_base1&amp;utm_term=1195%EF%BC%9A%E5%88%A4%E6%96%AD%E6%95%B4%E9%99%A4&amp;spm=1018.2226.3001.4187">信息学奥赛一本通 1195：判断整除 | OpenJudge NOI 2.6 3531:判断整除_1195:判断整除-CSDN博客</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-type">int</span> n, k, v;<br>	cin &gt;&gt; n &gt;&gt; k;<br>    <span class="hljs-type">bool</span> dp[<span class="hljs-number">10005</span>][<span class="hljs-number">105</span>]=&#123;<span class="hljs-literal">false</span>&#125;;<br>    <span class="hljs-type">int</span> a[<span class="hljs-number">10005</span>];<br>	dp[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-literal">true</span>;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; ++i)<br>		cin &gt;&gt; a[i];<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; ++i)<br>		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; k; ++j)<span class="hljs-comment">//j是除k得到的余数，范围为0~k-1 </span><br>			dp[i][j] = dp[i<span class="hljs-number">-1</span>][(k+j-a[i]%k)%k] || dp[i<span class="hljs-number">-1</span>][(j+a[i])%k]; <br>    cout &lt;&lt; (dp[n][<span class="hljs-number">0</span>] ? <span class="hljs-string">&quot;YES&quot;</span> : <span class="hljs-string">&quot;NO&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="1196：踩方格">1196：踩方格</h2>
+<h3 id="【题目描述】-10">【题目描述】</h3>
+<p>有一个方格矩阵，矩阵边界在无穷远处。我们做如下假设：</p>
+<p>a、每走一步时，只能从当前方格移动一格，走到某个相邻的方格上；</p>
+<p>b、走过的格子立即塌陷无法再走第二次；</p>
+<p>c、只能向北、东、西三个方向走；</p>
+<p>请问：如果允许在方格矩阵上走n步，共有多少种不同的方案。2种走法只要有一步不一样，即被认为是不同的方案。</p>
+<h3 id="【输入】-10">【输入】</h3>
+<p>允许在方格上行走的步数n(n≤20)。</p>
+<h3 id="【输出】-10">【输出】</h3>
+<p>计算出的方案数量。</p>
+<h3 id="【输入样例】-10">【输入样例】</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">2<br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-10">【输出样例】</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">7<br></code></pre></td></tr></table></figure>
+<p>由于之前走过的路不能再走了，所以需要区分向上向左向右走，</p>
+<p>当前格子能往左走说明上一步是向左走或者向上走的；</p>
+<p>当前格子能往右走说明上一步是向右走或者向上走的；</p>
+<p>当前格子不管怎么样都能向上走。</p>
+<p>统计所有能走的方向，就是向上向左向右。</p>
+<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs excel">#include&lt;iostream&gt;<br>using namespace std;<br><span class="hljs-built_in">int</span> main()&#123;<br>	<span class="hljs-built_in">int</span> <span class="hljs-built_in">n</span>;<br>    cin&gt;&gt;<span class="hljs-built_in">n</span>;<br>    <span class="hljs-built_in">int</span> <span class="hljs-built_in">left</span>[<span class="hljs-number">100</span>],<span class="hljs-built_in">right</span>[<span class="hljs-number">100</span>],head[<span class="hljs-number">100</span>],<span class="hljs-built_in">sum</span>[<span class="hljs-number">100</span>];<br>    <span class="hljs-built_in">left</span>[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;<br>    <span class="hljs-built_in">right</span>[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;<br>    head[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;<br>    <span class="hljs-built_in">sum</span>[<span class="hljs-number">1</span>] = <span class="hljs-number">3</span>;<br>    for(<span class="hljs-built_in">int</span> i=<span class="hljs-number">2</span>;i&lt;=<span class="hljs-built_in">n</span>;i++)&#123;<br>        <span class="hljs-built_in">left</span>[i] = <span class="hljs-built_in">left</span>[i-<span class="hljs-number">1</span>] + head[i-<span class="hljs-number">1</span>];<br>        <span class="hljs-built_in">right</span>[i] = <span class="hljs-built_in">right</span>[i-<span class="hljs-number">1</span>] + head[i-<span class="hljs-number">1</span>];<br>        head[i] = <span class="hljs-built_in">left</span>[i-<span class="hljs-number">1</span>] + <span class="hljs-built_in">right</span>[i-<span class="hljs-number">1</span>] + head[i-<span class="hljs-number">1</span>];<br>        <span class="hljs-built_in">sum</span>[i] = <span class="hljs-built_in">left</span>[i] + <span class="hljs-built_in">right</span>[i] + head[i];<br>    &#125;<br>    cout&lt;&lt;<span class="hljs-built_in">sum</span>[<span class="hljs-built_in">n</span>];<br>	return <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="1197：山区建小学">1197：山区建小学</h2>
+<h3 id="【题目描述】-11">【题目描述】</h3>
+<p>政府在某山区修建了一条道路，恰好穿越总共m个村庄的每个村庄一次，没有回路或交叉，任意两个村庄只能通过这条路来往。已知任意两个相邻的村庄之间的距离为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>d</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">d_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>(为正整数)，其中，0&lt;i&lt;m。为了提高山区的文化素质，政府又决定从m个村中选择n个村建小学(设0&lt;n≤m&lt;500)。请根据给定的m、n以及所有相邻村庄的距离，选择在哪些村庄建小学，才使得所有村到最近小学的距离总和最小，计算最小值。</p>
+<h3 id="【输入】-11">【输入】</h3>
+<p>第1行为m和n，其间用空格间隔</p>
+<p>第2行为m−1个整数，依次表示从一端到另一端的相邻村庄的距离，整数之间以空格间隔。</p>
+<p>例如:</p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">10 </span><span class="hljs-number">3</span><br><span class="hljs-symbol">2 </span><span class="hljs-number">4</span> <span class="hljs-number">6</span> <span class="hljs-number">5</span> <span class="hljs-number">2</span> <span class="hljs-number">4</span> <span class="hljs-number">3</span> <span class="hljs-number">1</span> <span class="hljs-number">3</span><br></code></pre></td></tr></table></figure>
+<p>表示在10个村庄建3所学校。第1个村庄与第2个村庄距离为2，第2个村庄与第3个村庄距离为4，第3个村庄与第4个村庄距离为6，…，第9个村庄到第10个村庄的距离为3。</p>
+<h3 id="【输出】-11">【输出】</h3>
+<p>各村庄到最近学校的距离之和的最小值。</p>
+<h3 id="【输入样例】-11">【输入样例】</h3>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">10 </span><span class="hljs-number">2</span><br><span class="hljs-symbol">3 </span><span class="hljs-number">1</span> <span class="hljs-number">3</span> <span class="hljs-number">1</span> <span class="hljs-number">1</span> <span class="hljs-number">1</span> <span class="hljs-number">1</span> <span class="hljs-number">1</span> <span class="hljs-number">3</span><br></code></pre></td></tr></table></figure>
+<h3 id="【输出样例】-11">【输出样例】</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">18<br></code></pre></td></tr></table></figure>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>递推算法</div>
+      <div>http://example.com/2024/06/18/递推算法/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>EricWang</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 18, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/18/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" title="排序算法">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">排序算法</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/18/%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95/" title="递归算法">
+                        <span class="hidden-mobile">递归算法</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
